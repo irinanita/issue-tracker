@@ -7,3 +7,7 @@
 .carousel-item img{
     filter:brightness(70%);
 }
+
+.reason-why .fas{
+    font-size: 50px;
+}

@@ -14,6 +14,7 @@ There are two categories of users registered and not, both of them represent pot
 ... will be shown only the landing page with all the details and reasons why this app may be useful to them. They will be prompted to register and try out the app.
 * Registered users
 ... will have access to all the web app's functionalities
+* Carousel diaplyed for both users as registered users may not have yet purchase the product this may be a reminder and a promt why they should
 * Any action can be finalised in less than two steps
 * Feadback is given at the end of important events
 * Navigation throughout the website is simple and intuitive
