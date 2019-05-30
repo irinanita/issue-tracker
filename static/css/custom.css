@@ -17,6 +17,13 @@
 
 .carousel-item img{
     filter:brightness(70%);
+    height:360px;
+    object-fit: cover;
+
+}
+
+.carousel {
+height:360px;
 }
 
 
