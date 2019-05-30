@@ -21,7 +21,7 @@ There are two categories of users registered and not, both of them represent pot
 
 [Wireframes](https://drive.google.com/drive/folders/1cM1__363xG0X4xwey0lbOpnczrzyhBps?usp=sharing)
 
-[Main Colour Palette](https://coolors.co/ad343e-f2af29-2d6558-000000-e0e0ce)
+[Main Colour Palette](https://coolors.co/ad343e-f2af29-235046-000000-e0e0ce)
 
 ### User Stories
 
