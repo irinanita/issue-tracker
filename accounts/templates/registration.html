@@ -1,0 +1,15 @@
+{% extends 'base.html'%}
+
+{%load bootstrap_tags%}
+
+{%block content%} 
+
+<form  method="POST" class="mt-5 mr-auto ml-auto col-xs-12 col-lg-8 clearfix">
+    {%csrf_token%}
+    {{registration_form | as_bootstrap}}
+    <button class="btn btn-primary float-right mt-3" type="submit">Register</button>
+</form>
+
+<p class="text-center">If you already have an account, you can <a href='#'>Sign in</a></p>
+
+{%endblock%}
