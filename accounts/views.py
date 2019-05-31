@@ -27,6 +27,7 @@ def registration(request):
                 return redirect(reverse('index'))
         else:
             registration_form.add_error(None,"Some off the fields have errors")
+            messages.success(request,"teeeest")
 
     # # if a GET (or any other method) we'll create a blank form
     else:

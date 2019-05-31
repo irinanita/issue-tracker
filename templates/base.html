@@ -82,8 +82,14 @@
       </a>
     </div>
   </div>
-  
+  <!----------------------------------------------------------------- Container-->
   <div class="container">
+    <!------------------------------------------------------Alert Messages-->
+    {% if messages %}
+        {% for message in messages %}
+            {{message}}
+        {% endfor %}
+    {% endif %}
    {% block content %}{% endblock %}
   </div>
 </body>
