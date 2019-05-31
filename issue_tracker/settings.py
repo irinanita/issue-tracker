@@ -128,3 +128,5 @@ STATICFILES_DIRS = [
 ]
 
 #print ("base dir path", BASE_DIR)
+
+MESSAGE_STORAGE = "django.contrib.messages.storage.session.SessionStorage"
