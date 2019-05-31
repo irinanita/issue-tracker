@@ -1,8 +1,9 @@
 from django.shortcuts import render,redirect, reverse
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .forms import UserRegistrationForm
+from .forms import UserRegistrationForm,UserLoginForm
 
 
 # Create your views here.
@@ -33,6 +34,26 @@ def registration(request):
 
     return render(request, 'registration.html', {'registration_form': registration_form})
     
+def user_login(request):
+    '''Return a login page'''
+    if request.user.is_authenticated:
+        return redirect(reverse('index'))
+    if request.method == "POST":
+        login_form = UserLoginForm(request.POST)
+        if login_form.is_valid():
+            user = authenticate(username=request.POST['username'],
+                                password = request.POST['password'])
+            if user:
+                login(request,user)
+                messages.success(request,"You have successfully logged in")
+                return redirect(reverse('index'))
+            else:
+                login_form.add_error(None,"Your username or password is incorrect")
+    else:
+        login_form = UserLoginForm()
+    return render(request,'login.html',{"login_form":login_form})
+
+@login_required    
 def user_logout(request):
     """A view that logs the user out and redirects back to the index page"""
     logout(request)
