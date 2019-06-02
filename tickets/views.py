@@ -7,6 +7,8 @@ from .forms import AddTicketForm
 # Create your views here.
 
 def add_ticket(request):
+    current_user = request.user
+    print (current_user.id,type(current_user.id))
     '''
     Create a view that allows us to create or edit a post
     (if the post ID is null or not)
@@ -15,13 +17,14 @@ def add_ticket(request):
     if request.method == "POST":
         add_ticket_form = AddTicketForm(request.POST,request.FILES)
         if add_ticket_form.is_valid():
-            obj=Ticket() #get the Ticket object that we need to save the input
-            obj.title=add_ticket_form.cleaned_data['title']
-            obj.description=add_ticket_form.cleaned_data['description']
-            obj.type=add_ticket_form.cleaned_data['type']
-            obj.label=add_ticket_form.cleaned_data['label']
-            obj.image=add_ticket_form.cleaned_data['image']
-            obj.save()
+            
+            ticket = add_ticket_form.save(commit=False)
+            # commit=False tells Django that "Don't send this to database yet.
+            # I have more things I want to do with it."
+
+            ticket.user = request.user # Set the user object here
+            ticket.save() # Now you can send it to DB
+            
             messages.success(request,"ticket added")
             return redirect(reverse('index'))
     else:

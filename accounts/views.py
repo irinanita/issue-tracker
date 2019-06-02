@@ -25,10 +25,7 @@ def registration(request):
                 login(request,user)
                 messages.success(request,"You have successfully logged in")
                 return redirect(reverse('index'))
-        else:
-            registration_form.add_error(None,"Some off the fields have errors")
-
-    # # if a GET (or any other method) we'll create a blank form
+    # if a GET (or any other method) we'll create a blank form
     else:
         registration_form = UserRegistrationForm()
 

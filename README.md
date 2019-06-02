@@ -48,6 +48,10 @@ There are two categories of users registered and not, both of them represent pot
 7. Upvoting bugs is free
 8. Registered users can buy the app after they have tried the demo version
 
+## Superusers/admins by accessing the admin panel
+1. Can change ticket status from opened to closed
+2. Can change ticket label or type in case it's been wrongly assigned based on the description
+
 ### Other Possible Features and Improvements
 
 
@@ -64,7 +68,9 @@ screen resize. Navigation links that highlight when a user is at the page that m
 href
 
 [Bootstrap](https://getbootstrap.com/) - For a responsive layout & prebuilt components
-  
+
+[Crispy Forms](https://django-crispy-forms.readthedocs.io/en/latest/) - Used for styling Bootstrap4 forms in Django
+
 [Google fonts](https://fonts.google.com/) - For additional fonts with particular styling
 
 [Font Awesome](https://fontawesome.com/free) - For responsive and stylish icons
@@ -90,7 +96,7 @@ SQL Database that comes with Django for the development environment and Postgres
 
 
 ## Version Control
-Git will be used for version control.
+Git is used for version control.
 
 ## Deployment
 This Project was deployed with Heroku in the following way:
