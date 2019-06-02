@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.utils import timezone
 from .models import Ticket
 from .forms import AddTicketForm
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -29,4 +30,9 @@ def add_ticket(request):
             return redirect(reverse('index'))
     else:
         add_ticket_form = AddTicketForm()
-    return render(request, 'addticket.html' , {'add_ticket_form': add_ticket_form} )    
+    return render(request, 'addticket.html' , {'add_ticket_form': add_ticket_form} )
+
+@login_required()    
+def ticketslist(request):
+    tickets = Ticket.objects.all()
+    return render(request,'ticketslist.html',{'tickets':tickets})

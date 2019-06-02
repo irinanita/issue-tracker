@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Tickets</h1>
+    {% for ticket in tickets %}
+    <div class="card mb-2 mb-md-4">
+        <div class="card-body">
+        <div class="row">
+            <div class="col-sm-12 col-md-auto">
+                <h5 class="card-title" >{{ticket.title}}</h5>
+            </div>
+            <div class="col-sm-12 col-md-auto">
+                <span class="badge badge-secondary badge-pill ml-2">{{ticket.status}}</span>
+                <span class="badge badge-secondary badge-pill ml-2">{{ticket.type}}</span>
+                <span class="badge badge-secondary badge-pill ml-2">{{ticket.label}}</span>
+                
+            </div>
+            <div class="col-sm-12 col-md-auto ml-auto">
+                <span>Last Updated: dd/mm/yyyy</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-md-auto">
+                <span class="mr-3 text-secondary">Author: {{ticket.user}}</span>
+            </div>
+            <div class="col-sm-12 col-md-auto ml-md-auto">
+                <span>UpVotes: {{ticket.score}}</span>
+                  <a href="#" class="btn btn-primary float-right d-md-none">Details</a>
+            </div>
+        </div>
+     </div>
+        <div class="card-footer text-muted clearfix">
+            Added on: {{ticket.creation_date}}
+            <a href="#" class="btn btn-primary float-right d-none d-md-inline">Details</a>
+        </div>
+    </div>
+    {% endfor %}
+{% endblock %}
