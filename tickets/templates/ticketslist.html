@@ -31,7 +31,7 @@
      </div>
         <div class="card-footer text-muted clearfix">
             Added on: {{ticket.creation_date}}
-            <a href="#" class="btn btn-primary float-right d-none d-md-inline">Details</a>
+            <a href="{% url 'ticket_details' ticket.id %}" class="btn btn-primary float-right d-none d-md-inline">Details</a>
         </div>
     </div>
     {% endfor %}

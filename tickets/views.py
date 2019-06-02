@@ -36,3 +36,14 @@ def add_ticket(request):
 def ticketslist(request):
     tickets = Ticket.objects.all()
     return render(request,'ticketslist.html',{'tickets':tickets})
+    
+def ticket_details(request,pk):
+    '''
+    Will return a single ticket and all the information about it
+    based on the Post ID (pk) and render it to ticketdetail.html template
+    Or return 404 error if the post is not found
+    '''
+    ticket = get_object_or_404(Ticket,pk=pk)
+    #post.save()
+    return render (request, "ticketdetails.html",{'ticket':ticket})
+
