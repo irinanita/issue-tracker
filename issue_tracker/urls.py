@@ -26,7 +26,7 @@ urlpatterns = [
     url(r'^$',index,name="index"),
     url(r'^accounts/',include(urls_accounts)),
     url(r'^addticket$',add_ticket,name="add_ticket"),
-    url(r'^tickets$',ticketslist,name="ticketslist"),
+    url(r'^tickets/(?P<ticket_type>\w+)/$',ticketslist,name="ticketslist"),
     url(r'^(?P<pk>\d+)/$',ticket_details,name='ticket_details'),
     url(r'^media/(?P<path>.*)$',serve,{'document_root':MEDIA_ROOT}),
 

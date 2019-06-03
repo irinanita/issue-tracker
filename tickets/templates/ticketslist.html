@@ -1,19 +1,26 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} {% block content %}
+<h1>Tickets</h1>
 
-{% block content %}
-    <h1>Tickets</h1>
-    {% for ticket in tickets %}
-    <div class="card mb-2 mb-md-4">
-        <div class="card-body">
+<div class="row">
+    <div class="col-12">
+        <a href="{% url 'ticketslist' ticket_type=1 %}" class="btn btn-primary">All</a>
+        <a href="{% url 'ticketslist' ticket_type=2 %}" class="btn btn-primary">Bugs</a>
+        <a href="{% url 'ticketslist' ticket_type=3 %}" class="btn btn-primary">Features</a>
+    </div>
+</div>
+
+{% for ticket in tickets %}
+<div class="card mb-2 mb-md-4">
+    <div class="card-body">
         <div class="row">
             <div class="col-sm-12 col-md-auto">
-                <h5 class="card-title" >{{ticket.title}}</h5>
+                <h5 class="card-title">{{ticket.title}}</h5>
             </div>
             <div class="col-sm-12 col-md-auto">
                 <span class="badge badge-secondary badge-pill ml-2">{{ticket.status}}</span>
                 <span class="badge badge-secondary badge-pill ml-2">{{ticket.type}}</span>
                 <span class="badge badge-secondary badge-pill ml-2">{{ticket.label}}</span>
-                
+
             </div>
             <div class="col-sm-12 col-md-auto ml-auto">
                 <span>Last Updated: dd/mm/yyyy</span>
@@ -25,14 +32,13 @@
             </div>
             <div class="col-sm-12 col-md-auto ml-md-auto">
                 <span>UpVotes: {{ticket.score}}</span>
-                  <a href="#" class="btn btn-primary float-right d-md-none">Details</a>
+                <a href="#" class="btn btn-primary float-right d-md-none">Details</a>
             </div>
         </div>
-     </div>
-        <div class="card-footer text-muted clearfix">
-            Added on: {{ticket.creation_date}}
-            <a href="{% url 'ticket_details' ticket.id %}" class="btn btn-primary float-right d-none d-md-inline">Details</a>
-        </div>
     </div>
-    {% endfor %}
-{% endblock %}
+    <div class="card-footer text-muted clearfix">
+        Added on: {{ticket.creation_date}}
+        <a href="{% url 'ticket_details' ticket.id %}" class="btn btn-primary float-right d-none d-md-inline">Details</a>
+    </div>
+</div>
+{% endfor %} {% endblock %}

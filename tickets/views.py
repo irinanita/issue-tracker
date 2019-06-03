@@ -33,8 +33,13 @@ def add_ticket(request):
     return render(request, 'addticket.html' , {'add_ticket_form': add_ticket_form} )
 
 @login_required()    
-def ticketslist(request):
-    tickets = Ticket.objects.all()
+def ticketslist(request,ticket_type=None):
+    if ticket_type=="1":
+        tickets = Ticket.objects.all()
+    if ticket_type=="2":
+        tickets = Ticket.objects.filter(type__contains="bug")
+    if ticket_type=="3":
+        tickets = Ticket.objects.filter(type__contains="feature")    
     return render(request,'ticketslist.html',{'tickets':tickets})
     
 def ticket_details(request,pk):
