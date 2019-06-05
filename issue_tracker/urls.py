@@ -18,6 +18,7 @@ from django.contrib import admin
 from home.views import index
 from accounts import urls as urls_accounts
 from tickets.views import add_ticket,ticketslist,ticket_details
+from search.views import search
 from .settings import MEDIA_ROOT
 from django.views.static import serve
 
@@ -29,5 +30,6 @@ urlpatterns = [
     url(r'^tickets/(?P<ticket_type>\w+)/$',ticketslist,name="ticketslist"),
     url(r'^(?P<pk>\d+)/$',ticket_details,name='ticket_details'),
     url(r'^media/(?P<path>.*)$',serve,{'document_root':MEDIA_ROOT}),
+    url(r'^search/',search,name="search")
 
 ]

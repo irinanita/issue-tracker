@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'home',
     'accounts',
     'tickets',
+    'search',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
