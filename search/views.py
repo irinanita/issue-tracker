@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.db.models import Q
 from tickets.models import Ticket
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
 
 # Create your views here.
 
@@ -32,7 +34,13 @@ def search(request):
                 query_set = query_set.order_by('creation_date')    
             if query_sort == "best score on top":
                 query_set = query_set.order_by('-score')    
-
-    tickets=query_set
-
+    paginator = Paginator(query_set,2)
+    page = request.GET.get('page')
+    try:
+        tickets = paginator.page(page)
+    except PageNotAnInteger:
+        tickets = paginator.page(1)
+    except EmptyPage:
+        tickets = paginator.page(paginator.num_pages)
+        
     return render(request,"ticketslist.html",{"tickets":tickets})

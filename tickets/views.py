@@ -1,4 +1,5 @@
 from django.shortcuts import render,reverse,redirect,get_object_or_404
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib import messages
 from django.utils import timezone
 from .models import Ticket
@@ -34,12 +35,24 @@ def add_ticket(request):
 
 @login_required()    
 def ticketslist(request,ticket_type=None):
-    if ticket_type=="1":
-        tickets = Ticket.objects.all()
+    tickets_list = Ticket.objects.all()
     if ticket_type=="2":
-        tickets = Ticket.objects.filter(type__contains="bug")
+        tickets_list = tickets_list.filter(type__contains="bug")
     if ticket_type=="3":
-        tickets = Ticket.objects.filter(type__contains="feature")    
+        tickets_list = tickets_list.filter(type__contains="feature")
+    
+    paginator = Paginator(tickets_list,2)
+    page = request.GET.get('page')
+    
+    try:
+        tickets = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        tickets = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        tickets = paginator.page(paginator.num_pages)    
+        
     return render(request,'ticketslist.html',{'tickets':tickets})
     
 def ticket_details(request,pk):
