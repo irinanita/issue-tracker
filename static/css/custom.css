@@ -7,6 +7,19 @@
 #ffffff - white
 ***/
 
+html,
+body {
+    height: 100%;
+
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+
+
 /*********************CAROUSEL******************/
 
 .carousel-caption{
@@ -17,13 +30,13 @@
 
 .carousel-item img{
     filter:brightness(70%);
-    height:360px;
+    height:400px;
     object-fit: cover;
 
 }
 
 .carousel {
-height:360px;
+height:400px;
 }
 
 
@@ -34,8 +47,11 @@ height:360px;
 
 /*********************NAVBAR & FOOTER******************/
 
-.footer,
-.navbar-expand-lg {
+.container{
+    padding-bottom: 90px;
+}
+
+.footer {
     flex-shrink: 0;
 }
 
@@ -44,6 +60,11 @@ height:360px;
     background-color: #235046;
     color:#fff;
 }
+
+.footer{
+    bottom: 0;
+}
+
 
 .fa-github {
     font-size: 30px;

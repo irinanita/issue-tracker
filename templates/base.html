@@ -21,7 +21,7 @@
       <ul class="navbar-nav mr-auto">
         {% if user.is_authenticated %}
         <li class="nav-item">
-          <a class="nav-link" href="#"> Dashboard <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="{% url 'index' %}"> Dashboard <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{% url 'ticketslist' ticket_type=1 %}">Tickets</a>
@@ -60,7 +60,7 @@
   </div>
 </body>
 
-<footer class="footer text-center mt-5 p-3">
+<footer class="footer text-center fixed-bottom">
   <h6 class="mt-2"> Issue Tracker - Milestone Project</h6>
   <div>
     <a class="github-link" target=”_blank”  href="https://github.com/irinanita"><i class="fab fa-github mt-2"></i></a>

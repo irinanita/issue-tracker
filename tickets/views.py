@@ -54,7 +54,8 @@ def ticketslist(request,ticket_type=None):
         tickets = paginator.page(paginator.num_pages)    
         
     return render(request,'ticketslist.html',{'tickets':tickets})
-    
+
+@login_required()     
 def ticket_details(request,pk):
     '''
     Will return a single ticket and all the information about it
@@ -62,6 +63,6 @@ def ticket_details(request,pk):
     Or return 404 error if the post is not found
     '''
     ticket = get_object_or_404(Ticket,pk=pk)
-    #post.save()
+  
     return render (request, "ticketdetails.html",{'ticket':ticket})
 
