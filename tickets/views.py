@@ -3,14 +3,14 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib import messages
 from django.utils import timezone
 from .models import Ticket
+from comments.models import Comment
+from comments.forms import AddCommentForm
 from .forms import AddTicketForm
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
 def add_ticket(request):
-    current_user = request.user
-    print (current_user.id,type(current_user.id))
     '''
     Create a view that allows us to create or edit a post
     (if the post ID is null or not)
@@ -62,7 +62,25 @@ def ticket_details(request,pk):
     based on the Post ID (pk) and render it to ticketdetail.html template
     Or return 404 error if the post is not found
     '''
-    ticket = get_object_or_404(Ticket,pk=pk)
-  
-    return render (request, "ticketdetails.html",{'ticket':ticket})
+    ticket = get_object_or_404(Ticket,pk=pk) if pk else None
+    add_comment_form = AddCommentForm()
+    
+    if request.method == "POST":
+        add_comment_form = AddCommentForm(request.POST)
+        if add_comment_form.is_valid():
+            
+            comment = add_comment_form.save(commit=False)
+            # commit=False tells Django that "Don't send this to database yet.
+            # I have more things I want to do with it."
+            
+            ticket=Ticket.objects.get(id=pk)
+            comment.ticket=ticket
+            comment.user = request.user # Set the user object here
+            comment.save() # Now you can send it to DB
+            messages.success(request,"Your comment has been successfully added")
+            add_comment_form = AddCommentForm()
+    
+    return render (request, "ticketdetails.html",{'ticket':ticket,'add_comment_form':add_comment_form})
+
+
 

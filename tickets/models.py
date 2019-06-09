@@ -30,7 +30,7 @@ class Ticket(models.Model):
     creation_date = models.DateTimeField(auto_now_add=True) 
     #auto_now and auto_now_add imply the field is not user-editable and must always get set to this value
     score = models.IntegerField(default=0)
-    image = models.ImageField(upload_to="img",blank="True",null="True")
+    image = models.ImageField(upload_to="img",blank=True,null=True)
     #img correspond to our img direcotry under media
     
     def __str__(self):

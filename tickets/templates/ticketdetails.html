@@ -1,4 +1,7 @@
 {% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
 {% block content %}
 
 <div class="row mt-3 mt-md-5">
@@ -22,7 +25,7 @@
 <hr>
 <div class="row mt-3">
     {% if ticket.image %}
-    <div class="col-12 col-md-auto">
+    <div class="col-12 col-md-8">
         <img class="img-fluid" src="{{MEDIA_URL}}{{ticket.image}}"/>
     </div>
     {% endif %}
@@ -39,12 +42,15 @@
 </div>
 <hr/>
 <h5>Comments</h5>
-{% if user.is_authenticated %}
-A form that allows to add a message will be here
-{% else %}
-<div class="row">
-    <p>If you want to leave a comment please <a href="{% url 'registration' %}">login or register</a></p>
-</div>
-{% endif %}
+{% if messages %}
+        {% for message in messages %}
+            {{message}}
+        {% endfor %}
+    {% endif %}
+<form  method="POST" class="mt-5 mr-auto ml-auto col-xs-12 col-lg-8 clearfix">
+    {%csrf_token%}
+    {{add_comment_form | crispy}}
+    <button class="btn btn-primary float-right mt-3" type="submit">Add Comment</button>
+</form>
 {% endblock %}
 

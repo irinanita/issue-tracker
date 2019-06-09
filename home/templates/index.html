@@ -47,6 +47,12 @@
 {% endblock %}
 
 {% block content %}
+<!------------------------------------------------------Alert Messages-->
+    {% if messages %}
+        {% for message in messages %}
+            {{message}}
+        {% endfor %}
+    {% endif %}
 
 {% if user.is_authenticated %}
 <p>Hello authenticated user .Here are your dashboards</p>
