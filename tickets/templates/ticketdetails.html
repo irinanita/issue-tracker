@@ -47,6 +47,18 @@
             {{message}}
         {% endfor %}
     {% endif %}
+{% for comment in comments %}
+<div class="row">
+    <div class="col-md-2">
+        Author: {{comment.user}}
+    </div>
+    <div class="col-md-10">
+        <p>{{comment.content}}</p>
+        <p class="text-right"><small class="text-muted">added on:{{comment.creation_date}}</small> </p>
+    </div>
+</div>
+<hr>
+{% endfor %}
 <form  method="POST" class="mt-5 mr-auto ml-auto col-xs-12 col-lg-8 clearfix">
     {%csrf_token%}
     {{add_comment_form | crispy}}

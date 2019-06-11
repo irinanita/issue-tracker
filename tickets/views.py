@@ -64,6 +64,8 @@ def ticket_details(request,pk):
     '''
     ticket = get_object_or_404(Ticket,pk=pk) if pk else None
     add_comment_form = AddCommentForm()
+    #get all comments where the ticket foreign key matches the current ticket pk
+    comments = Comment.objects.filter(ticket=pk).order_by('-creation_date')
     
     if request.method == "POST":
         add_comment_form = AddCommentForm(request.POST)
@@ -80,7 +82,7 @@ def ticket_details(request,pk):
             messages.success(request,"Your comment has been successfully added")
             add_comment_form = AddCommentForm()
     
-    return render (request, "ticketdetails.html",{'ticket':ticket,'add_comment_form':add_comment_form})
+    return render (request, "ticketdetails.html",{'ticket':ticket,'add_comment_form':add_comment_form,'comments':comments})
 
 
 
