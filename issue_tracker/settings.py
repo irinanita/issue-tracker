@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'tickets',
     'search',
     'comments',
+    'upvoting',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'

@@ -28,6 +28,6 @@ urlpatterns = [
     url(r'^accounts/',include(urls_accounts)),
     url(r'^tickets/',include(urls_tickets)),
     url(r'^media/(?P<path>.*)$',serve,{'document_root':MEDIA_ROOT}),
-    url(r'^search/',search,name="search")
+    url(r'^search/',search,name="search"),
 
 ]
