@@ -1,0 +1,27 @@
+{% extends 'base.html'%} {%block content%}
+{% if messages %}
+    {% for message in messages %}
+      
+        <div class="alert alert-secondary mt-3" role="alert">
+            {{message}}
+        </div>
+          
+    {% endfor %}
+{% endif %}
+
+
+<div class="row">
+   
+      {% for item in cart_items %}
+        <div class="col">{{item.ticket.title}}</div>
+        <div class="col">{{item.ticket.type}}</div>
+        <div class="col">{{item.ticket.label}}</div>
+     {% endfor %}
+</div>
+
+<div class="row">
+    <p>Total</p>
+    <p><span class="glyphicon glyphicon-euro" aria-hidden="true"></span>Total Value Variable Will be here</p>
+    <a href="#" class="btn btn-success" role="button"><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>Checkout</a>
+</div>
+{%endblock%}

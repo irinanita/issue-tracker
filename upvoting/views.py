@@ -18,11 +18,12 @@ def upvote(request,pk):
             user_vote.save()
             ticket.score+=1
             ticket.save()
-            print(ticket.score,'current ticket score')
             messages.success(request,"You have successfully voted ", extra_tags="ticket-update")
         else:
-            messages.success(request,"You need to pay first ", extra_tags="ticket-update")
-            print('ticket score', ticket.score)
+            cart=request.session.get('cart',{})
+            cart[pk] = 1
+            request.session['cart'] = cart
+            return redirect ("view_cart")
     else:
         messages.error(request,"You have alreaty voted for this", extra_tags="ticket-update")
     return redirect ("ticket_details",pk=ticket.id)

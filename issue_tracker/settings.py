@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'search',
     'comments',
     'upvoting',
+    'cart',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -57,6 +58,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    
 ]
 
 ROOT_URLCONF = 'issue_tracker.urls'
@@ -73,6 +75,8 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.media',
+                'cart.contexts.cart_contents',
+               
             ],
         },
     },
