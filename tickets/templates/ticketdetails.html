@@ -3,6 +3,15 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
+<div class="alert alert-secondary mt-3" role="alert">
+{% if messages %}
+    {% for message in messages %}
+        {% if 'ticket-update' in message.tags %}
+            {{message}}
+        {% endif %}    
+    {% endfor %}
+{% endif %}
+</div>
 
 <div class="row mt-3 mt-md-5">
     <div class="col-sm-12 col-md-auto">
@@ -46,7 +55,7 @@
         {% for message in messages %}
             {{message}}
         {% endfor %}
-    {% endif %}
+{% endif %}
 {% for comment in comments %}
 <div class="row">
     <div class="col-md-2">
