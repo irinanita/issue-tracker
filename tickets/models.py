@@ -21,7 +21,7 @@ class Ticket(models.Model):
     ('closed', 'Closed'),
 )
     
-    title = models.CharField(max_length=60)
+    title = models.CharField(max_length=70)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,null=True)
     description = models.TextField()
     type=  models.CharField(max_length=7, choices=TYPE_CHOICES)
