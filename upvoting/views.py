@@ -23,6 +23,7 @@ def upvote(request,pk):
             cart=request.session.get('cart',{})
             cart[pk] = 1
             request.session['cart'] = cart
+            messages.success(request,"In order to upvote a feature a small contribution of 15 EUR per feature is required. Remember you can only vote once")
             return redirect ("view_cart")
     else:
         messages.error(request,"You have alreaty voted for this", extra_tags="ticket-update")

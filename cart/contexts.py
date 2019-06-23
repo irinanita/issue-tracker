@@ -10,8 +10,12 @@ def cart_contents(request):
     
     cart_items=[]
     
+    total_value=0
+    
     for pk, quantity in cart.items():
         ticket=get_object_or_404(Ticket,pk=pk)
+        total_value+=15
         cart_items.append({"pk":pk,"ticket":ticket})
-        print('cart items',cart_items)
-    return {"cart_items":cart_items}
+    print('cart items',cart_items)
+
+    return {"cart_items":cart_items,"total_value":total_value}
