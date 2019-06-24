@@ -13,6 +13,15 @@
 {% endblock %}
 
 {% block content %}
+{% if messages %}
+    {% for message in messages %}
+      
+        <div class="alert alert-secondary mt-3" role="alert">
+            {{message}}
+        </div>
+          
+    {% endfor %}
+{% endif %}
 <h2 class="mt-3">Checkout</h2>
 <table class="table mt-3">
   <thead>
@@ -44,10 +53,11 @@
     <legend>Payment Details</legend>
 
     <div id="credit-card-errors" style="display: none;">
-        <div id="alert-message block-message error" id="stripe-error-message"></div>
+        <div class="errorList" id="stripe-error-message"></div>
     </div>
 
     <div class="form-group col-md-6">
+        
         {{ order_form | crispy }}
     </div>
 

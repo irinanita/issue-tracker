@@ -17,9 +17,13 @@ def checkout(request):
         order_form = OrderForm(request.POST)
         payment_form = MakePaymentForm(request.POST)
         
+        if payment_form.is_valid():
+            print('order form is valid')
+        
         if order_form.is_valid() and payment_form.is_valid():
             order = order_form.save(commit=False)
             order.date = timezone.now()
+            order.user = request.user
             order.save()
             
             cart = request.session.get('cart', {})
@@ -44,9 +48,9 @@ def checkout(request):
                 messages.error(request, "Your card was declined!")
                 
             if customer.paid:
-                messages.error(request, "You have successfully paid")
                 request.session['cart'] = {}
-                return redirect(reverse('products'))
+                messages.error(request, "You have successfully paid")
+                return redirect('ticketslist',ticket_type=1)
             else:
                 messages.error(request, "Unable to take payment")
         else:

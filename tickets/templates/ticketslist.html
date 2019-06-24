@@ -9,6 +9,15 @@
         <a href="{% url 'ticketslist' ticket_type=3 %}" class="btn btn-primary">Features</a>
     </div>
 </div>
+{% if messages %}
+    {% for message in messages %}
+      
+        <div class="alert alert-secondary mt-3" role="alert">
+            {{message}}
+        </div>
+          
+    {% endfor %}
+{% endif %}
 
 <!------------------------------------------------------------TICKET SECTION -->
 <!--------------------------SEARCH & FILTER -->
