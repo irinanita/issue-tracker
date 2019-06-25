@@ -6,6 +6,7 @@ from .models import OrderLineTicket
 from django.conf import settings
 from django.utils import timezone
 from tickets.models import Ticket
+from upvoting.models import UserTicketVote
 import stripe
 
 # Create your views here.
@@ -49,8 +50,12 @@ def checkout(request):
                 
             if customer.paid:
                 request.session['cart'] = {}
-                messages.error(request, "You have successfully paid")
-                return redirect('ticketslist',ticket_type=1)
+                messages.success(request, "You have successfully paid", extra_tags="ticket-update")
+                user_vote=UserTicketVote(ticketID=ticket,user=request.user)
+                user_vote.save()
+                ticket.score+=1
+                ticket.save()
+                return redirect("ticket_details",pk=ticket.id)
             else:
                 messages.error(request, "Unable to take payment")
         else:
