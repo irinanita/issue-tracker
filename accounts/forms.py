@@ -2,13 +2,12 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
-from django.shortcuts import get_object_or_404
 from .models import UserProfile
 
 
 class UserRegistrationForm(UserCreationForm):
     '''Form used to register a new user'''
-    username = forms.CharField(label = 'Your name', max_length = 100)
+    username = forms.CharField(label = 'Username', max_length = 100)
     password1 = forms.CharField(label = "Password",
                                 widget = forms.PasswordInput)
     password2 = forms.CharField(label = "Password Confirmation",
@@ -42,7 +41,9 @@ class UserLoginForm(forms.Form):
 
 
 class ProfileForm(forms.ModelForm):
+
+    YEARS = [x for x in range(1930, 2019)]
+    birth_date = forms.DateField(widget = forms.SelectDateWidget(years = YEARS),initial="1970-06-21",required=False)
     class Meta:
         model = UserProfile
         fields = ("location","birth_date","avatar")
-

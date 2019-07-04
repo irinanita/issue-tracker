@@ -77,3 +77,20 @@ height:400px;
 .fa-github:hover {
     color: #F2AF29;
 }
+
+#id_birth_date_month {
+    display: inline-block;
+    width:40%;
+}
+
+
+#id_birth_date_year {
+    display: inline-block;
+    width:30%;
+}
+
+
+#id_birth_date_day {
+    display: inline-block;
+    width:20%;
+}
