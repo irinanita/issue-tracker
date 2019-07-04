@@ -65,7 +65,8 @@ def user_logout(request):
 def user_profile(request):
     current_user = request.user
     user = User.objects.get(pk = current_user.id)
-    form = ProfileForm(instance=user)
+    user_form = UserRegistrationForm(instance=user)
+    profile_form = ProfileForm(instance=user)
 
-    return render(request, 'profile.html',{'form':form})
+    return render(request, 'profile.html',{'user_form':user_form,'profile_form':profile_form})
 

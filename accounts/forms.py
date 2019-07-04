@@ -3,6 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.shortcuts import get_object_or_404
+from .models import UserProfile
 
 
 class UserRegistrationForm(UserCreationForm):
@@ -42,6 +43,6 @@ class UserLoginForm(forms.Form):
 
 class ProfileForm(forms.ModelForm):
     class Meta:
-        model = User
-        fields = ("username","email","first_name","last_name" )
+        model = UserProfile
+        fields = ("location","birth_date","avatar")
 
