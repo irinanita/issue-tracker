@@ -4,6 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .forms import UserRegistrationForm, UserLoginForm, ProfileForm
+from .models import UserProfile
 
 
 # Create your views here.
@@ -23,6 +24,7 @@ def registration(request):
                                 password = request.POST['password1'])
             if user:
                 login(request, user)
+                UserProfile.objects.create(user = request.user)
                 messages.success(request, "You have successfully logged in")
                 return redirect(reverse('index'))
     # if a GET (or any other method) we'll create a blank form
