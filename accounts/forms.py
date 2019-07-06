@@ -36,7 +36,7 @@ class UserRegistrationForm(UserCreationForm):
 
 
 class UserLoginForm(forms.Form):
-    '''Form to be used to log in users'''
+    """Form to be used to log in users"""
     username = forms.CharField()
     password = forms.CharField(widget = forms.PasswordInput)
 
@@ -53,7 +53,7 @@ class ExtendedProfileForm(forms.ModelForm):
             w, h = get_image_dimensions(avatar)
 
             # validate dimensions
-            max_width = max_height = 300
+            max_width = max_height = 250
             if w > max_width or h > max_height:
                 raise forms.ValidationError(
                     u'Please use an image that is '
@@ -63,7 +63,7 @@ class ExtendedProfileForm(forms.ModelForm):
             main, sub = avatar.content_type.split('/')
             if not (main == 'image' and sub in ['jpeg', 'gif', 'png']):
                 raise forms.ValidationError(u'Please use a JPEG, '
-                                            'GIF or PNG image.')
+                                            'GIF or PNG image')
 
             # validate file size
             if len(avatar) > (20 * 1024):
@@ -81,4 +81,4 @@ class ExtendedProfileForm(forms.ModelForm):
 
     class Meta:
         model = UserProfile
-        fields = ("country", "birth_date","bio", "avatar")
+        fields = ("country", "birth_date", "bio", "avatar")

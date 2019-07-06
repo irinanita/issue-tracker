@@ -65,7 +65,15 @@ def user_logout(request):
 def user_profile(request):
     current_user = request.user
     user_profile = UserProfile.objects.get(user = current_user.id)
-    profile_form = ExtendedProfileForm(instance=user_profile)
 
-    return render(request, 'profile.html',{'profile_form':profile_form,'user_profile':user_profile})
+    if request.method == "POST":
+        profile_form = ExtendedProfileForm(instance = user_profile, data = request.POST, files = request.FILES)
 
+        if profile_form.is_valid():
+            profile_form.save()
+            messages.success(request, "You have successfully updated your profile")
+            return redirect('user_profile')
+    else:
+        profile_form = ExtendedProfileForm(instance = user_profile)
+
+    return render(request, 'profile.html', {'profile_form': profile_form, 'user_profile': user_profile})
