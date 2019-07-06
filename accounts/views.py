@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .forms import UserRegistrationForm, UserLoginForm, ProfileForm
+from .forms import UserRegistrationForm, UserLoginForm, ExtendedProfileForm
 from .models import UserProfile
 
 
@@ -64,11 +64,8 @@ def user_logout(request):
 
 def user_profile(request):
     current_user = request.user
-    user = User.objects.get(pk = current_user.id)
-    user_form = UserRegistrationForm(instance=user)
-    user_form.fields['username'].widget.attrs['readonly'] = True
-    user_form.fields['username'].required = False
-    profile_form = ProfileForm(instance=user)
+    user_profile = UserProfile.objects.get(user = current_user.id)
+    profile_form = ExtendedProfileForm(instance=user_profile)
 
-    return render(request, 'profile.html',{'user_form':user_form,'profile_form':profile_form})
+    return render(request, 'profile.html',{'profile_form':profile_form,'user_profile':user_profile})
 
