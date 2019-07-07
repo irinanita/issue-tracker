@@ -94,3 +94,8 @@ height:400px;
     display: inline-block;
     width:20%;
 }
+
+.img-container{
+    overflow: hidden;
+
+}

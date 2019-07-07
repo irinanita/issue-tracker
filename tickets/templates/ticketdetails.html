@@ -10,7 +10,7 @@
         <div class="alert alert-secondary mt-3" role="alert">
             {{message}}
         </div>
-        {% endif %}    
+        {% endif %}
     {% endfor %}
 {% endif %}
 
@@ -61,7 +61,8 @@
 {% for comment in comments %}
 <div class="row">
     <div class="col-md-2">
-        Author: {{comment.user}}
+        <div class="img-container" style="background-image: url('{{comment.user.userprofile.avatar.url}}'); background-size: contain; background-repeat: no-repeat; padding-top: 60%;"> </div>
+        Author: {{comment.user.username}}
     </div>
     <div class="col-md-10">
         <p>{{comment.content}}</p>
