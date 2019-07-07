@@ -77,9 +77,9 @@
                         {% for bug in bugs_list %}
                             <tr>
                                 <th scope="row">{{ forloop.counter }}</th>
-                                <td>{{ bug.title }}<span
+                                <td><a href="{% url 'ticket_details' bug.id %}">{{ bug.title }}</a><span
                                         class="badge badge-secondary badge-pill ml-2">{{ bug.label }}</span></td>
-                                <td>{{ bug.score }}</td>
+                                <td class="text-center">{{ bug.score }}</td>
                             </tr>
                         {% endfor %}
                         </tbody>
@@ -104,9 +104,9 @@
                         {% for feature in features_list %}
                             <tr>
                                 <th scope="row">{{ forloop.counter }}</th>
-                                <td>{{ feature.title }}<span
+                                <td><a href="{% url 'ticket_details' feature.id %}">{{ feature.title }}</a><span
                                         class="badge badge-secondary badge-pill ml-2">{{ feature.label }}</span></td>
-                                <td>{{ feature.score }}</td>
+                                <td class="text-center">{{ feature.score }}</td>
                             </tr>
                         {% endfor %}
                         </tbody>
@@ -129,11 +129,11 @@
                         {% for ticket in latest_tickets %}
                             <tr>
                                 <th scope="row">{{ forloop.counter }}</th>
-                                <td>{{ ticket.title }}<span
+                                <td><a href="{% url 'ticket_details' ticket.id %}">{{ ticket.title }}</a><span
                                         class="badge badge-secondary badge-pill ml-2">{{ ticket.label }}</span>
                                     <span class="badge badge-secondary badge-pill ml-2">{{ ticket.type }}</span>
                                 </td>
-                                <td>{{ ticket.score }}</td>
+                                <td class="text-center">{{ ticket.score }}</td>
                             </tr>
                         {% endfor %}
                         </tbody>

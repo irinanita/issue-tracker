@@ -18,7 +18,9 @@ body {
     flex-direction: column;
 }
 
-
+a{
+    color:inherit!important;
+}
 
 /*********************CAROUSEL******************/
 
