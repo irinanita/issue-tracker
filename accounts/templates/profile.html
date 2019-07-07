@@ -4,22 +4,35 @@
 
 {% block content %}
 
-<div class="row mt-3">
-<div class="col-xs-12 col-md-4">
-    <img src="{{ MEDIA_URL }}{{ user_profile.avatar }}" alt="">
-    <p>You are logged in as {{ user.username }}</p>
-    <p>Last login : {{ user.last_login }}</p>
-    <p>Date joined : {{ user.date_joined }}</p>
-    <p>Email {{ user.email }}</p>
-</div>
-    <div class="col-xs-12 col-md-8">
-    <form method="POST" class="mr-auto ml-auto col-xs-12 col-lg-8 clearfix">
-        {% csrf_token %}
+    {% if messages %}
+        {% for message in messages %}
 
-        {{ profile_form| crispy }}
+            <div class="alert alert-secondary mt-3" role="alert">
+                {{ message }}
+            </div>
 
-        <button class="btn btn-success float-right mt-3" type="submit">Update</button>
-    </form>
-</div>
-</div>
+        {% endfor %}
+    {% endif %}
+
+    <div class="row mt-3">
+        <div class="col-xs-12 col-md-4">
+            <img class="rounded" src="{{ MEDIA_URL }}{{ user_profile.avatar }}" alt="Profile Image">
+            <p>You are logged in as {{ user.username }}</p>
+            <p>Last login : {{ user.last_login }}</p>
+            <p>Date joined : {{ user.date_joined }}</p>
+            <p>Email {{ user.email }}</p>
+        </div>
+        <div class="col-xs-12 col-md-8">
+            <form method="POST" class="mr-auto ml-auto col-xs-12 col-lg-8 clearfix" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ profile_form| crispy }}
+                {% if profile_form.errors %}
+                    <div class="alert alert-danger">
+                        {{ profile_form.avatar.errors }}
+                    </div>
+                {% endif %}
+                <button class="btn btn-success float-right mt-3" type="submit">Update</button>
+            </form>
+        </div>
+    </div>
 {% endblock %}
