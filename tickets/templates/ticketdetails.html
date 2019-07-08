@@ -4,77 +4,83 @@
 
 {% block content %}
 
-{% if messages %}
-    {% for message in messages %}
-        {% if 'ticket-update' in message.tags %}
-        <div class="alert alert-secondary mt-3" role="alert">
-            {{message}}
-        </div>
-        {% endif %}
-    {% endfor %}
-{% endif %}
-
-
-<div class="row mt-3 mt-md-5">
-    <div class="col-sm-12 col-md-auto">
-        <h3 class="card-title">{{ticket.title}}</h3>
-    </div>
-    <div class="col-sm-12 col-md-auto">
-        <span class="badge badge-secondary badge-pill ml-2">{{ticket.status}}</span>
-        <span class="badge badge-secondary badge-pill ml-2">{{ticket.type}}</span>
-        <span class="badge badge-secondary badge-pill ml-2">{{ticket.label}}</span>
-    </div>
-</div>
-<div class="row">
-    <div class="col-sm-12 col-md-auto">
-        <span class="mr-3 text-secondary">Author: {{ticket.user}}</span> <span class="text-secondary"> Created: {{ticket.creation_date}} </span>
-    </div>
-    <div class="col-sm-12 col-md-auto ml-auto">
-        <span class="text-secondary">Last Updated: dd/mm/yyyy</span>
-    </div>
-</div>
-<hr>
-<div class="row mt-3">
-    {% if ticket.image %}
-    <div class="col-12 col-md-8">
-        <img class="img-fluid" src="{{MEDIA_URL}}{{ticket.image}}"/>
-    </div>
-    {% endif %}
-    <div class="col-12 col-md">
-        <h5>Description</h5>
-        <p>{{ticket.description}}</p>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-auto ml-auto">
-        <span><a href="{% url 'upvote' ticket.id %}"><i class="fas fa-plus-circle mr-2"></i>UpVote</a></span>
-    </div>
-</div>
-<hr/>
-<h5>Comments</h5>
-{% if messages %}
+    {% if messages %}
         {% for message in messages %}
-            {{message}}
+            {% if 'ticket-update' in message.tags %}
+                <div class="alert alert-secondary mt-4" role="alert">
+                    {{ message }}
+                </div>
+            {% endif %}
         {% endfor %}
-{% endif %}
-{% for comment in comments %}
-<div class="row">
-    <div class="col-md-2">
-        <div class="img-container" style="background-image: url('{{comment.user.userprofile.avatar.url}}'); background-size: contain; background-repeat: no-repeat; padding-top: 60%;"> </div>
-        Author: {{comment.user.username}}
+    {% endif %}
+
+
+    <div class="row mt-4 mt-md-5">
+        <div class="col-sm-12 col-md-auto">
+            <h3 class="card-title">{{ ticket.title }}</h3>
+        </div>
+        <div class="col-sm-12 col-md-auto">
+            <span class="badge badge-secondary badge-pill ml-2">{{ ticket.status }}</span>
+            <span class="badge badge-secondary badge-pill ml-2">{{ ticket.type }}</span>
+            <span class="badge badge-secondary badge-pill ml-2">{{ ticket.label }}</span>
+        </div>
     </div>
-    <div class="col-md-10">
-        <p>{{comment.content}}</p>
-        <p class="text-right"><small class="text-muted">added on:{{comment.creation_date}}</small> </p>
+    <div class="row">
+        <div class="col-sm-12 col-md-auto">
+            <span class="mr-3 text-secondary">Author: {{ ticket.user }}</span> <span
+                class="text-secondary"> Created: {{ ticket.creation_date }} </span>
+        </div>
+        <div class="col-sm-12 col-md-auto ml-auto">
+            <span class="text-secondary">Last Updated: dd/mm/yyyy</span>
+        </div>
     </div>
-</div>
-<hr>
-{% endfor %}
-<form  method="POST" class="mt-5 mr-auto ml-auto col-xs-12 col-lg-8 clearfix">
-    {%csrf_token%}
-    {{add_comment_form | crispy}}
-    <button class="btn btn-primary float-right mt-3" type="submit">Add Comment</button>
-</form>
+    <hr>
+    <div class="row mt-3">
+        {% if ticket.image %}
+            <div class="col-12 col-md-8">
+                <img class="img-fluid" src="{{ MEDIA_URL }}{{ ticket.image }}"/>
+            </div>
+        {% endif %}
+        <div class="col-12 col-md">
+            <h5>Description</h5>
+            <p>{{ ticket.description }}</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-auto ml-auto">
+            <span><a href="{% url 'upvote' ticket.id %}"><i class="fas fa-plus-circle mr-2"></i>UpVote</a></span>
+        </div>
+    </div>
+    <hr/>
+    <h5>Comments</h5>
+    {% if messages %}
+        <div class="alert alert-success role="alert">
+            {% for message in messages %}
+                {{ message }}
+            {% endfor %}
+        </div>
+    {% endif %}
+    {% for comment in comments %}
+        <div class="row">
+            <div class="col-md-2">
+                <div class="img-container"
+                     style="background-image: url('{{ comment.user.userprofile.avatar.url }}'); background-size: contain; background-repeat: no-repeat; padding-top: 60%;"></div>
+                Author: {{ comment.user.username }}
+            </div>
+            <div class="col-md-10">
+                <p>{{ comment.content }}</p>
+                <p class="text-right">
+                    <small class="text-muted">added on:{{ comment.creation_date }}</small>
+                </p>
+            </div>
+        </div>
+        <hr>
+    {% endfor %}
+    <form method="POST" class="mt-5 mr-auto ml-auto col-xs-12 col-lg-8 clearfix">
+        {% csrf_token %}
+        {{ add_comment_form | crispy }}
+        <button class="btn btn-primary float-right mt-3" type="submit">Add Comment</button>
+    </form>
 {% endblock %}
 

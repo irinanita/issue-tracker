@@ -1,116 +1,117 @@
 {% extends 'base.html' %} {% block content %}
-<h1>Tickets</h1>
+    <h1>Tickets</h1>
 
-<!------------------------------------------------TABS ALL - BUGS - FEATURES -->
-<div class="row">
-    <div class="col-12">
-        <a href="{% url 'ticketslist' ticket_type=1 %}" class="btn btn-primary">All</a>
-        <a href="{% url 'ticketslist' ticket_type=2 %}" class="btn btn-primary">Bugs</a>
-        <a href="{% url 'ticketslist' ticket_type=3 %}" class="btn btn-primary">Features</a>
-    </div>
-</div>
-{% if messages %}
-    {% for message in messages %}
-      
-        <div class="alert alert-secondary mt-3" role="alert">
-            {{message}}
-        </div>
-          
-    {% endfor %}
-{% endif %}
-
-<!------------------------------------------------------------TICKET SECTION -->
-<!--------------------------SEARCH & FILTER -->
-
-<form method="GET" action="{% url 'search' %}" class="mt-3">
-    <div class ="form-row">        
-      <div class="form-group col-12 col-md col-lg-3">
-        <input type="text" class="form-control" id="keywords" name="q" placeholder="Title/Description contains...">
-      </div>
-      <div class="form-group col-6 col-md-auto">
-        <select class="form-control" id="status" name="status">
-          <option selected disabled>Status</option>
-          <option value="opened">Opened</option>
-          <option value="closed">Closed</option>
-        </select>
-      </div>
-      <div class="form-group col-6 col-md-auto">
-        <select class="form-control" id="label" name="label">
-          {% if query_label %}:
-          <option selected>{{query_label}}</option>
-          {% else %}
-          <option selected disabled>Label</option>
-          {% endif %}
-          <option value="functionality">Functionality</option>
-          <option value ="design">Design</option>
-        </select>
-      </div>
-      <div class="form-group col-12 col-md-6 col-lg-3">
-        <select class="form-control" id="sort" name="sort">
-          <option selected disabled>Sort</option>
-          <option value="recently added on top">Recently added on top</option>
-          <option value="best score on top">Best score on top</option>
-          <option value="oldest on top">Oldest on top</option>
-        </select>
-      </div>
-      <div class="form-group col-6 col-md-3 col-lg">
-          <button type="submit" value="search" class="btn btn-primary btn-block " name="search">Apply</button>
-      </div>
-      <div class="form-group col-6 col-md-3 col-lg">
-          <button type="submit" value="reset" class="btn btn-primary btn-block " name="reset">Reset</button>
-      </div>
-    </div>
-</form>
-
-<!-----------------------------TICKETS LIST -->
-{% for ticket in tickets %}
-<div class="card mt-3 mb-2 mb-md-4">
-    <div class="card-body">
-        <div class="row">
-            <div class="col-sm-12 col-md-auto">
-                <h5 class="card-title"><a href="{% url 'ticket_details' ticket.id %}">{{ticket.title|title}}</a></h5>
-            </div>
-            <div class="col-sm-12 col-md-auto">
-                <span class="badge badge-secondary badge-pill ml-2">{{ticket.status}}</span>
-                <span class="badge badge-secondary badge-pill ml-2">{{ticket.type}}</span>
-                <span class="badge badge-secondary badge-pill ml-2">{{ticket.label}}</span>
-
-            </div>
-            <div class="col-sm-12 col-md-auto ml-auto">
-                <span>Last Updated: dd/mm/yyyy</span>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-12 col-md-auto">
-               <p>{{ticket.description | slice:"65"}}</p>
-            </div>
-            <div class="col-sm-12 col-md-auto ml-md-auto">
-                <span>UpVotes: {{ticket.score}}</span>
-            </div>
+    <!------------------------------------------------TABS ALL - BUGS - FEATURES -->
+    <div class="row mt-4">
+        <div class="col-12">
+            <a href="{% url 'ticketslist' ticket_type=1 %}" class="btn btn-primary mr-md-1">All</a>
+            <a href="{% url 'ticketslist' ticket_type=2 %}" class="btn btn-primary mr-md-1">Bugs</a>
+            <a href="{% url 'ticketslist' ticket_type=3 %}" class="btn btn-primary mr-md-1">Features</a>
         </div>
     </div>
-    <div class="card-footer text-muted clearfix">
-        <div class="d-md-inline">
-            Author: {{ticket.user}}
+    {% if messages %}
+        {% for message in messages %}
+
+            <div class="alert alert-secondary mt-3" role="alert">
+                {{ message }}
+            </div>
+
+        {% endfor %}
+    {% endif %}
+
+    <!------------------------------------------------------------TICKET SECTION -->
+    <!--------------------------SEARCH & FILTER -->
+
+    <form method="GET" action="{% url 'search' %}" class="mt-3">
+        <div class="form-row">
+            <div class="form-group col-12 col-md col-lg-3">
+                <input type="text" class="form-control" id="keywords" name="q"
+                       placeholder="Title/Description contains...">
+            </div>
+            <div class="form-group col-6 col-md-auto">
+                <select class="form-control" id="status" name="status">
+                    <option selected disabled>Status</option>
+                    <option value="opened">Opened</option>
+                    <option value="closed">Closed</option>
+                </select>
+            </div>
+            <div class="form-group col-6 col-md-auto">
+                <select class="form-control" id="label" name="label">
+                    {% if query_label %}:
+                        <option selected>{{ query_label }}</option>
+                    {% else %}
+                        <option selected disabled>Label</option>
+                    {% endif %}
+                    <option value="functionality">Functionality</option>
+                    <option value="design">Design</option>
+                </select>
+            </div>
+            <div class="form-group col-12 col-md-6 col-lg-3">
+                <select class="form-control" id="sort" name="sort">
+                    <option selected disabled>Sort</option>
+                    <option value="recently added on top">Recently added on top</option>
+                    <option value="best score on top">Best score on top</option>
+                    <option value="oldest on top">Oldest on top</option>
+                </select>
+            </div>
+            <div class="form-group col-6 col-md-3 col-lg">
+                <button type="submit" value="search" class="btn btn-primary btn-block " name="search">Apply</button>
+            </div>
+            <div class="form-group col-6 col-md-3 col-lg">
+                <button type="submit" value="reset" class="btn btn-primary btn-block " name="reset">Reset</button>
+            </div>
         </div>
-        <div class="d-md-inline">
-            Added on: {{ticket.creation_date}}
-        </div>
-    </div>
-</div>
-{% endfor %} 
-<div class="pagination">
+    </form>
+
+    <!-----------------------------TICKETS LIST -->
+    {% if tickets  %}
+        {% for ticket in tickets %}
+            <div class="card mt-3 mb-2 mb-md-4">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-auto">
+                            <h5 class="card-title"><a
+                                    href="{% url 'ticket_details' ticket.id %}">{{ ticket.title|title }}</a></h5>
+                        </div>
+                        <div class="col-sm-12 col-md-auto">
+                            <span class="badge badge-secondary badge-pill ml-2">{{ ticket.status }}</span>
+                            <span class="badge badge-secondary badge-pill ml-2">{{ ticket.type }}</span>
+                            <span class="badge badge-secondary badge-pill ml-2">{{ ticket.label }}</span>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-auto">
+                            <p>{{ ticket.description | slice:"70" }}</p>
+                        </div>
+                        <div class="col-sm-12 col-md-auto ml-md-auto">
+                            <span>UpVotes: {{ ticket.score }}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer text-muted clearfix">
+                    <div class="d-md-inline">
+                        Author: {{ ticket.user }}
+                    </div>
+                    <div class="d-md-inline">
+                        Added on: {{ ticket.creation_date }}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+<!-------------------------------------------------------Pagination-->
+    <div class="pagination clearfix mt-5">
     <span class="step-links">
         {% if tickets.has_previous %}
             {% if 'search' in request.GET %}
                 <a href="{{ request.get_full_path }}&page={{ tickets.previous_page_number }}">previous</a>
             {% else %}
                 <a href="?page={{ tickets.previous_page_number }}">previous</a>
-            {% endif %}    
+            {% endif %}
         {% endif %}
 
-        <span class="current">
-            Page {{ tickets.number }} of {{ tickets.paginator.num_pages }}.
+        <span class="current float-right">
+            Page {{ tickets.number }} of {{ tickets.paginator.num_pages }}
         </span>
 
         {% if tickets.has_next %}
@@ -121,6 +122,12 @@
             {% endif %}
         {% endif %}
     </span>
-</div>
+    </div>
 
+    {% else %}
+        <div class="alert alert-warning mt-3" role="alert">
+            <p> Oooops...it looks like there are no tickets to display yet</p>
+        </div>
+
+    {% endif %}
 {% endblock %}

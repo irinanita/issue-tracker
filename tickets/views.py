@@ -6,8 +6,6 @@ from comments.models import Comment
 from comments.forms import AddCommentForm
 from .forms import AddTicketForm
 from django.contrib.auth.decorators import login_required
-from accounts.models import UserProfile
-
 
 # Create your views here.
 
@@ -29,7 +27,7 @@ def add_ticket(request):
             ticket.save()  # Now you can send it to DB
 
             messages.success(request, "ticket added")
-            return redirect(reverse('index'))
+            return redirect('ticketslist',ticket_type = 1)
     else:
         add_ticket_form = AddTicketForm()
     return render(request, 'addticket.html', {'add_ticket_form': add_ticket_form})
