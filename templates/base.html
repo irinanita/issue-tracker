@@ -61,7 +61,9 @@
    
     </div>
 </nav>
+  {% if user.is_authenticated %}
    <p class="text-right mr-2 mt-2">Hi,<span>{{ user.get_username }}</span></p>
+  {% endif %}
   <div class="container-flex"> 
     {% block banners %} {% endblock %}
   </div>

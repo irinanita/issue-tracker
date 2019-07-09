@@ -100,25 +100,25 @@
             </div>
         {% endfor %}
 <!-------------------------------------------------------Pagination-->
-    <div class="pagination clearfix mt-5">
+    <div class="pagination  mt-5">
     <span class="step-links">
         {% if tickets.has_previous %}
             {% if 'search' in request.GET %}
-                <a href="{{ request.get_full_path }}&page={{ tickets.previous_page_number }}">previous</a>
+                <a href="{{ request.get_full_path }}&page={{ tickets.previous_page_number }}" class="mr-2">Previous</a>
             {% else %}
-                <a href="?page={{ tickets.previous_page_number }}">previous</a>
+                <a href="?page={{ tickets.previous_page_number }}" class="mr-2">Previous</a>
             {% endif %}
         {% endif %}
 
-        <span class="current float-right">
+        <span class="current mr-2">
             Page {{ tickets.number }} of {{ tickets.paginator.num_pages }}
         </span>
 
         {% if tickets.has_next %}
             {% if 'search' in request.GET %}
-                <a href="{{ request.get_full_path }}&page={{ tickets.next_page_number }}">next</a>
+                <a href="{{ request.get_full_path }}&page={{ tickets.next_page_number }}">Next</a>
             {% else %}
-                <a href="?page={{ tickets.next_page_number }}">next</a>
+                <a href="?page={{ tickets.next_page_number }}">Next</a>
             {% endif %}
         {% endif %}
     </span>

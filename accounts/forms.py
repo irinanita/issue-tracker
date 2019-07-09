@@ -66,9 +66,9 @@ class ExtendedProfileForm(forms.ModelForm):
                                             'GIF or PNG image')
 
             # validate file size
-            if len(avatar) > (20 * 1024):
+            if len(avatar) > (70 * 1024):
                 raise forms.ValidationError(
-                    u'Avatar file size may not exceed 20k.')
+                    u'Avatar file size may not exceed 70k.')
 
         except AttributeError:
             """
