@@ -6,8 +6,8 @@ from django_countries.fields import CountryField
 # Create your models here.
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete = models.CASCADE)
-    birth_date = models.DateField(null = True, blank = True)
-    avatar = models.ImageField(upload_to = "avatars", default='avatars/default.png')
+    birth_date = models.DateField(blank = True)
+    avatar = models.ImageField(upload_to = "avatars", blank = "True")
     country = CountryField(blank = True, null = False)
     bio = models.TextField(max_length = 300, blank = True, null = False)
 

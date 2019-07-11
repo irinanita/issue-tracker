@@ -135,7 +135,7 @@ a.cart:hover,.fa-shopping-cart:hover{
 
 
 .nav a {
-    color: ##E0E0CE;
+    color: #E0E0CE;
 }
 
 .navbar-dark .navbar-nav .nav-link {
@@ -164,4 +164,10 @@ a.cart:hover,.fa-shopping-cart:hover{
 .img-container {
     overflow: hidden;
 
+}
+
+.profile-picture .initial-avatar{
+    display:block;
+    margin-left:auto;
+    margin-right:auto;
 }

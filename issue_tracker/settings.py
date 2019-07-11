@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'cart',
     'checkout',
     'django_countries',
+    'initial_avatars',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
