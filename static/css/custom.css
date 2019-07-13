@@ -106,9 +106,13 @@ a:hover {
 .navbar {
     background-color: #235046;
     color: #fff;
-    position:fixed;
-    right: 0;
     width:100%;
+}
+
+.separator{
+    height: 1px;
+    width:100%;
+    background-color: #e0e0ce5c;
 }
 
 .footer {
@@ -155,6 +159,24 @@ a.cart:hover,.fa-shopping-cart:hover{
     align-items: baseline;
     justify-content: center;
 }
+
+.navbar-notauth{
+    position: relative;
+}
+
+.navbar-nav-notauth{
+    flex-direction: row;
+}
+
+.navbar-nav-notauth li:not(:first-child):before {
+    content: " | ";
+}
+
+.navbar-nav-notauth .nav-link{
+    display: inline;
+}
+
+
 
 #id_birth_date_month {
     display: inline-block;
