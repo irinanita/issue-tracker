@@ -125,7 +125,9 @@ a:hover {
 }
 
 a.cart,.fa-shopping-cart {
-    color: #fff
+    color: #fff;
+    font-size: 18px;
+    vertical-align: middle;
 }
 
 a.cart:hover,.fa-shopping-cart:hover{
@@ -144,6 +146,11 @@ a.cart:hover,.fa-shopping-cart:hover{
 
 .navbar-dark .navbar-nav .nav-link:hover {
     color: #fff;
+}
+
+.navbar-nav{
+        align-items: center;
+    justify-content: center;
 }
 
 #id_birth_date_month {
