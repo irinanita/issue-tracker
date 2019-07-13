@@ -148,8 +148,8 @@ a.cart:hover,.fa-shopping-cart:hover{
     color: #fff;
 }
 
-.navbar-nav{
-        align-items: center;
+.navbar-expand-md .navbar-nav{
+    align-items: baseline;
     justify-content: center;
 }
 
