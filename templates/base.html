@@ -67,7 +67,7 @@
                 <li class="nav-item mr-md-2 ">
                     <a class="cart" href="{% url 'view_cart' %}"><i class="fas fa-shopping-cart"></i></a>
                     {% if cart_items %}
-                        <span class="badge badge-pill badge-warning ml-n2">{{ cart_items|length }}</span>
+                        <span class="badge badge-pill badge-warning badge-warning-cart ml-n2">{{ cart_items|length }}</span>
                     {% endif %}
                 </li>
                 <li class="nav-item dropdown">

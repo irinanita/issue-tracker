@@ -17,7 +17,6 @@
       <th scope="col">Ticket Title</th>
       <th scope="col">Type</th>
       <th scope="col">Label</th>
-      <th scope="col">Quantity</th>
       <th scope="col"></th>
     </tr>
   </thead>
@@ -29,7 +28,6 @@
       <td>{{item.ticket.title}}</td>
       <td>{{item.ticket.type}}</td>
       <td>{{item.ticket.label}}</td>
-      <td>1</td>
       <td><a href="{% url 'delete_product' item.ticket.id %}"><i class="fas fa-minus-circle"></i></td></a>
     </tr>
     {% endfor %}

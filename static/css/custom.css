@@ -141,7 +141,9 @@ a.cart:hover,.fa-shopping-cart:hover{
     color: #E0E0CE;
 }
 
-
+.badge-warning-cart{
+    vertical-align: top;
+}
 
 .nav a {
     color: #E0E0CE;
