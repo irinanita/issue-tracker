@@ -45,23 +45,16 @@
     </div>
     <hr/>
     <h5>Comments</h5>
-    {% if messages %}
-        <div class="alert alert-success role=" alert">
-        {% for message in messages %}
-            {{ message }}
-        {% endfor %}
-        </div>
-    {% endif %}
     {% for comment in comments %}
         <div class="row">
             <div class="col-md-2">
                 {% if comment.user.userprofile.avatar %}
-                    <div class="img-container"
-                         style="background-image: url('{{ comment.user.userprofile.avatar.url }}'); background-size: contain; background-repeat: no-repeat; padding-top: 60%;">
+                    <div class="img-container rounded-circle"
+                         style="background-image: url('{{ comment.user.userprofile.avatar.url }}'); background-size: cover; background-repeat: no-repeat; height:64px;width:64px">
                     </div>
                 {% else %}
                     <div class="img-container">
-                        {% get_initial_avatar comment.user 100 'circle' %}
+                        {% get_initial_avatar comment.user 64 'circle' %}
                     </div>
                 {% endif %}
                 Author: {{ comment.user.username }}
