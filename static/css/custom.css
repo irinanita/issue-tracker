@@ -209,10 +209,10 @@ a.cart:hover,.fa-shopping-cart:hover{
 
 
 
-.swal-button {
-    background-color: #235046;
+.swal2-confirm {
+    background-color: #235046!important;
 }
 
-.swal-button:not([disabled]):hover {
-    background-color: #22594f;
+.swal2-confirm:not([disabled]):hover {
+    background-color: #317f70;
 }
