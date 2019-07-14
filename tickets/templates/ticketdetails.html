@@ -2,6 +2,8 @@
 
 {% load crispy_forms_tags %}
 
+{% load initialavatar %}
+
 {% block content %}
 
     {% if messages %}
@@ -55,18 +57,26 @@
     <hr/>
     <h5>Comments</h5>
     {% if messages %}
-        <div class="alert alert-success role="alert">
-            {% for message in messages %}
-                {{ message }}
-            {% endfor %}
+        <div class="alert alert-success role=" alert">
+        {% for message in messages %}
+            {{ message }}
+        {% endfor %}
         </div>
     {% endif %}
     {% for comment in comments %}
         <div class="row">
             <div class="col-md-2">
-                <div class="img-container"
-                     style="background-image: url('{{ comment.user.userprofile.avatar.url }}'); background-size: contain; background-repeat: no-repeat; padding-top: 60%;"></div>
+                {% if comment.user.userprofile.avatar %}
+                    <div class="img-container"
+                         style="background-image: url('{{ comment.user.userprofile.avatar.url }}'); background-size: contain; background-repeat: no-repeat; padding-top: 60%;">
+                    </div>
+                {% else %}
+                    <div class="img-container">
+                        {% get_initial_avatar comment.user 100 'circle' %}
+                    </div>
+                {% endif %}
                 Author: {{ comment.user.username }}
+
             </div>
             <div class="col-md-10">
                 <p>{{ comment.content }}</p>
@@ -83,4 +93,3 @@
         <button class="btn btn-primary float-right mt-3" type="submit">Add Comment</button>
     </form>
 {% endblock %}
-
