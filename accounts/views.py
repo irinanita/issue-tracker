@@ -1,11 +1,10 @@
 from django.shortcuts import render, redirect, reverse
-from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .forms import UserRegistrationForm, UserLoginForm, ExtendedProfileForm
 from .models import UserProfile
-
+import sweetify
 
 # Create your views here.
 
@@ -25,7 +24,7 @@ def registration(request):
             if user:
                 login(request, user)
                 UserProfile.objects.create(user = request.user)
-                messages.success(request, "You have successfully logged in")
+                sweetify.success(request, 'You Registered', text = 'Your have successfully registered')
                 return redirect(reverse('index'))
     # if a GET (or any other method) we'll create a blank form
     else:
@@ -45,7 +44,7 @@ def user_login(request):
                                 password = request.POST['password'])
             if user:
                 login(request, user)
-                messages.success(request, "You have successfully logged in")
+                sweetify.success(request, 'You Logged In', text = 'Your have successfully logged in')
                 return redirect(reverse('index'))
             else:
                 login_form.add_error(None, "Your username or password is incorrect")
@@ -58,7 +57,7 @@ def user_login(request):
 def user_logout(request):
     """A view that logs the user out and redirects back to the index page"""
     logout(request)
-    messages.success(request, 'You have successfully logged out')
+    sweetify.success(request, 'Logged Out', text = 'Your have successfully Logged Out')
     return redirect(reverse('index'))
 
 
@@ -71,7 +70,7 @@ def user_profile(request):
 
         if profile_form.is_valid():
             profile_form.save()
-            messages.success(request, "You have successfully updated your profile")
+            sweetify.success(request, 'Profile Updated', text = 'You have successfully updated your profile')
             return redirect('user_profile')
     else:
         profile_form = ExtendedProfileForm(instance = user_profile)

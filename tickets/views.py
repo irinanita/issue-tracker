@@ -1,6 +1,5 @@
 from django.shortcuts import render, reverse, redirect, get_object_or_404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.contrib import messages
 from .models import Ticket
 from comments.models import Comment
 from comments.forms import AddCommentForm
