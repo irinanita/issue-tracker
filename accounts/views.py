@@ -1,10 +1,10 @@
 from django.shortcuts import render, redirect, reverse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from django.contrib import messages
 from .forms import UserRegistrationForm, UserLoginForm, ExtendedProfileForm
 from .models import UserProfile
 import sweetify
+
 
 # Create your views here.
 
@@ -47,7 +47,8 @@ def user_login(request):
                 sweetify.success(request, 'You Logged In', text = 'Your have successfully logged in')
                 return redirect(reverse('index'))
             else:
-                login_form.add_error(None, "Your username or password is incorrect")
+                sweetify.error(request, 'Your username or password is incorrect', persistent = 'Close')
+
     else:
         login_form = UserLoginForm()
     return render(request, 'login.html', {"login_form": login_form})
