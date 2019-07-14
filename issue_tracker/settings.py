@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'checkout',
     'django_countries',
     'initial_avatars',
+    'sweetify',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -157,6 +158,7 @@ EMAIL_PORT = os.environ.get('EMAIL_PORT')
 EMAIL_HOST_USER = os.environ.get('EMAIL_ADDRESS')
 EMAIL_HOST_PASSWORD = os.environ.get('PASSWORD')
 
+SWEETIFY_SWEETALERT_LIBRARY = 'sweetalert'
 
 
 

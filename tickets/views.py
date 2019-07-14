@@ -6,6 +6,7 @@ from comments.models import Comment
 from comments.forms import AddCommentForm
 from .forms import AddTicketForm
 from django.contrib.auth.decorators import login_required
+import sweetify
 
 # Create your views here.
 
@@ -25,8 +26,8 @@ def add_ticket(request):
 
             ticket.user = request.user  # Set the user object here
             ticket.save()  # Now you can send it to DB
+            sweetify.success(request, 'Ticket Added',  text = 'Your ticket was successfully added to the list')
 
-            messages.success(request, "ticket added")
             return redirect('ticketslist',ticket_type = 1)
     else:
         add_ticket_form = AddTicketForm()
@@ -80,7 +81,7 @@ def ticket_details(request, pk):
             comment.ticket = ticket
             comment.user = request.user  # Set the user object here
             comment.save()  # Now you can send it to DB
-            messages.success(request, "Your comment has been successfully added")
+            sweetify.success(request, 'Comment Added', text = 'Your comment was successfully added')
             add_comment_form = AddCommentForm()
 
     return render(request, "ticketdetails.html",

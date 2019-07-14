@@ -23,6 +23,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"></script>
+    <!--SWEET ALERT-->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     {% block head_js %}
     {% endblock head_js %}
 </head>
@@ -111,6 +113,9 @@
     <h2 class="mt-4 text-center">{% block page_heading %}{% endblock %}</h2>
     {% block content %}{% endblock %}
 </div>
+
+{% load sweetify %}
+{% sweetify %}
 </body>
 
 <footer class="footer text-center fixed-bottom">
