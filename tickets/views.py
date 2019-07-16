@@ -7,6 +7,7 @@ from .forms import AddTicketForm
 from django.contrib.auth.decorators import login_required
 import sweetify
 
+
 # Create your views here.
 
 def add_ticket(request):
@@ -25,9 +26,9 @@ def add_ticket(request):
 
             ticket.user = request.user  # Set the user object here
             ticket.save()  # Now you can send it to DB
-            sweetify.success(request, 'Ticket Added',  text = 'Your ticket was successfully added to the list')
+            sweetify.success(request, 'Ticket Added', text = 'Your ticket was successfully added to the list')
 
-            return redirect('ticketslist',ticket_type = 1)
+            return redirect('ticketslist', ticket_type = 1)
     else:
         add_ticket_form = AddTicketForm()
     return render(request, 'addticket.html', {'add_ticket_form': add_ticket_form})
@@ -81,7 +82,9 @@ def ticket_details(request, pk):
             comment.user = request.user  # Set the user object here
             comment.save()  # Now you can send it to DB
             sweetify.success(request, 'Comment Added', text = 'Your comment was successfully added')
-            add_comment_form = AddCommentForm()
+            return redirect('ticket_details', pk = pk)
+    else:
+        add_comment_form = AddCommentForm()
 
     return render(request, "ticketdetails.html",
                   {'ticket': ticket, 'add_comment_form': add_comment_form, 'comments': comments})
