@@ -57,14 +57,26 @@ a:hover {
     color: #fff !important;
 }
 
+.btn-success {
+    border-radius: .6rem;
+    border-color: transparent;
+    -moz-transition: all 0.35s ease-in-out;
+    -webkit-transition: all 0.35s ease-in-out;
+    -o-transition: all 0.35s ease-in-out;
+    color: #fff !important;
+}
+
 .btn-primary:hover,
-.btn-primary:not(:disabled):not(.disabled):active {
+.btn-primary:not(:disabled):not(.disabled):active,
+.btn-success:hover,
+.btn-success:not(:disabled):not(.disabled):active {
     background-color: #F2AF29;
     border-color: transparent;
 
 }
 
-.btn-primary:focus {
+.btn-primary:focus,
+.btn-success:focus {
     box-shadow: 0 0 0 0.1rem rgba(38, 143, 255, .3);
 }
 
@@ -100,18 +112,19 @@ a:hover {
 
 .footer {
     flex-shrink: 0;
+    padding:10px;
 }
 
 .footer,
 .navbar {
     background-color: #235046;
     color: #fff;
-    width:100%;
+    width: 100%;
 }
 
-.separator{
+.separator {
     height: 1px;
-    width:100%;
+    width: 100%;
     background-color: #e0e0ce5c;
 }
 
@@ -131,17 +144,17 @@ a:hover {
     color: #F2AF29;
 }
 
-a.cart,.fa-shopping-cart {
+a.cart, .fa-shopping-cart {
     color: #fff;
     font-size: 18px;
     vertical-align: middle;
 }
 
-a.cart:hover,.fa-shopping-cart:hover{
+a.cart:hover, .fa-shopping-cart:hover {
     color: #E0E0CE;
 }
 
-.badge-warning-cart{
+.badge-warning-cart {
     vertical-align: top;
 }
 
@@ -157,16 +170,16 @@ a.cart:hover,.fa-shopping-cart:hover{
     color: #fff;
 }
 
-.navbar-expand-md .navbar-nav{
+.navbar-expand-md .navbar-nav {
     align-items: baseline;
     justify-content: center;
 }
 
-.navbar-notauth{
+.navbar-notauth {
     position: relative;
 }
 
-.navbar-nav-notauth{
+.navbar-nav-notauth {
     flex-direction: row;
 }
 
@@ -174,10 +187,9 @@ a.cart:hover,.fa-shopping-cart:hover{
     content: " | ";
 }
 
-.navbar-nav-notauth .nav-link{
+.navbar-nav-notauth .nav-link {
     display: inline;
 }
-
 
 /*********************PROFILE******************/
 
@@ -196,23 +208,51 @@ a.cart:hover,.fa-shopping-cart:hover{
     width: 20%;
 }
 
-.img-container {
-    overflow: hidden;
 
-}
-
-.profile-picture .initial-avatar{
-    display:block;
-    margin-left:auto;
-    margin-right:auto;
+.profile-picture .initial-avatar {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 
+/****Alerts****/
 
 .swal2-confirm {
-    background-color: #235046!important;
+    background-color: #235046 !important;
 }
 
 .swal2-confirm:not([disabled]):hover {
     background-color: #317f70;
+}
+
+
+.ticket-vote{
+    color: #235046;
+}
+
+.ticket-vote:hover{
+    color: #317f70;
+}
+
+
+/***********Comment Section**********/
+
+
+.img-container {
+    overflow: hidden;
+}
+
+.comment-author {
+    font-size: 0.8rem;
+}
+
+.comment-content{
+    padding-bottom: 25px;
+}
+
+.comment-date{
+    position: absolute;
+    bottom:0;
+    right: 0;
 }
