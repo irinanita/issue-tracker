@@ -38,7 +38,33 @@
 
     <div class="row">
         <div class="col-auto ml-auto">
-            <span><a class="ticket-vote" href="{% url 'upvote' ticket.id %}"><i class="fas fa-plus-circle mr-2"></i>UpVote</a></span>
+            <!-- Button trigger modal -->
+            <span class="ticket-vote text-success" data-toggle="modal" data-target="#modal"><i class="fas fa-plus-circle mr-2"></i>UpVote</span>
+            <!-- Modal -->
+            <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalLabel">Confirmation</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body text-center">
+                            <p><i class="far fa-question-circle fa-question-circle-modal text-black-50"></i></p>
+                            <p>A payment of <strong class="text-success">15 EUR</strong> is required to vote for a feature</p>
+                            <p>Would you like to proceed to cart?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+                            <a class="btn btn-success" href="{% url 'upvote' ticket.id %}" role="button">Continue</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
         </div>
     </div>
     <hr/>
@@ -46,27 +72,28 @@
     {% for comment in comments %}
         <div class="row">
             <div class="col-md-2">
-            <div class="row d-none d-md-flex">
-                {% if comment.user.userprofile.avatar %}
-                    <div class="img-container rounded-circle ml-auto mr-auto"
-                         style="background-image: url('{{ comment.user.userprofile.avatar.url }}'); background-size: cover; background-repeat: no-repeat; height:64px;width:64px">
-                    </div>
-                {% else %}
-                    <div class="img-container ml-auto mr-auto">
-                        {% get_initial_avatar comment.user 64 'circle' %}
-                    </div>
-                {% endif %}
-            </div>
-            <div class=" comment-author row text-muted">
-                 <span class="d-none d-md-inline-block mr-md-auto ml-md-auto">{{ comment.user.username }}</span>
-            </div>
+                <div class="row d-none d-md-flex">
+                    {% if comment.user.userprofile.avatar %}
+                        <div class="img-container rounded-circle ml-auto mr-auto"
+                             style="background-image: url('{{ comment.user.userprofile.avatar.url }}'); background-size: cover; background-repeat: no-repeat; height:64px;width:64px">
+                        </div>
+                    {% else %}
+                        <div class="img-container ml-auto mr-auto">
+                            {% get_initial_avatar comment.user 64 'circle' %}
+                        </div>
+                    {% endif %}
+                </div>
+                <div class=" comment-author row text-muted">
+                    <span class="d-none d-md-inline-block mr-md-auto ml-md-auto">{{ comment.user.username }}</span>
+                </div>
 
             </div>
             <div class="col-md-10 comment-content">
                 <p>{{ comment.content }}</p>
                 <p class="text-right text-muted">
                     <small class=" mr-2 mr-md-0 comment-date">
-                        <span class="d-inline d-md-none text-left">{{ comment.user.username }},</span> {{ comment.creation_date }}</small>
+                        <span class="d-inline d-md-none text-left">{{ comment.user.username }},</span> {{ comment.creation_date }}
+                    </small>
                 </p>
             </div>
         </div>

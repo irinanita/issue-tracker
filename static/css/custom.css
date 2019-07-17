@@ -66,6 +66,10 @@ a:hover {
     color: #fff !important;
 }
 
+.btn-outline-secondary{
+    border-radius: .4rem;
+}
+
 .btn-primary:hover,
 .btn-primary:not(:disabled):not(.disabled):active,
 .btn-success:hover,
@@ -226,13 +230,16 @@ a.cart:hover, .fa-shopping-cart:hover {
     background-color: #317f70;
 }
 
-
 .ticket-vote{
-    color: #235046;
+     -moz-transition: all 0.35s ease-in-out;
+    -webkit-transition: all 0.35s ease-in-out;
+    -o-transition: all 0.35s ease-in-out;
 }
 
+
 .ticket-vote:hover{
-    color: #317f70;
+    color: #235046!important;
+    cursor:pointer;
 }
 
 
@@ -255,4 +262,9 @@ a.cart:hover, .fa-shopping-cart:hover {
     position: absolute;
     bottom:0;
     right: 0;
+}
+
+/***********Modal**********/
+.fa-question-circle-modal{
+    font-size: 30px;
 }

@@ -20,9 +20,6 @@ def upvote(request, pk):
             ticket.save()
             sweetify.success(request, 'You have successfully voted')
         else:
-            sweetify.info(request, 'In order to vote for a feature a contribution of 15 EUR is required',
-                          persistent = 'Proceed',
-                          footer = '<a href="http://127.0.0.1:8000/tickets/type/3/"> Go back to Ticket List</a>')
             cart = request.session.get('cart', {})
             cart[pk] = 1
             request.session['cart'] = cart
