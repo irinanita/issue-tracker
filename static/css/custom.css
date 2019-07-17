@@ -29,9 +29,33 @@ a:hover {
     text-decoration: none;
 }
 
+/************************CARD******************/
+
 .card-title > a:hover {
     color: #AD343E;
 }
+
+.card-add{
+    border-radius:1.2rem;
+}
+
+.fa-users-card{
+    color:#235046;
+}
+
+.fa-smile-card{
+    color: #F2AF29;
+}
+
+.fa-shapes-card{
+    color:#AD343E;
+}
+
+.fa-box-open-card{
+    color:#444444;
+}
+
+
 
 /************************NAV******************/
 
