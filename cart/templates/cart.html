@@ -28,16 +28,16 @@
       <td>{{item.ticket.title}}</td>
       <td>{{item.ticket.type}}</td>
       <td>{{item.ticket.label}}</td>
-      <td><a href="{% url 'delete_product' item.ticket.id %}"><i class="fas fa-minus-circle"></i></td></a>
+      <td><a class="remove-item" href="{% url 'delete_product' item.ticket.id %}"><i class="fas fa-trash-alt"></i></a></td>
     </tr>
     {% endfor %}
   </tbody>
 </table>
 <div class="row">
-    <span class="mr-2 ml-auto">Total</span><span>{{total_value}}</span>
+    <span class="mr-md-5 ml-auto">Total:<strong class="ml-1">{{total_value}} EUR</strong></span>
 </div>
 
-<div class="row mt-3">
+<div class="row mt-4">
     <a href="{% url 'checkout' %}" class="btn btn-success ml-auto" role="button"><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>Checkout</a>
 </div>
 {%endblock%}

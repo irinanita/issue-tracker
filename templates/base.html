@@ -32,7 +32,7 @@
 <body>
 {% if user.is_authenticated %}
     <nav class="navbar navbar-expand-md navbar-dark">
-        <a class="navbar-brand" href="#">Issue Tracker</a>
+        <a class="navbar-brand" href="{% url 'index' %}">Issue Tracker</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -92,7 +92,7 @@
     <!-- Not Authenticated Users NAV will not collapse -->
 {% else %}
     <nav class="navbar navbar-notauth navbar-dark">
-        <a class="navbar-brand" href="#">Issue Tracker</a>
+        <a class="navbar-brand" href="{% url 'index' %}">Issue Tracker</a>
 
         <ul class="navbar-nav navbar-nav-notauth ml-auto">
             <li class="nav-item mr-1">

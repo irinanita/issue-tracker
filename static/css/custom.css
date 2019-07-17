@@ -148,6 +148,8 @@ a:hover {
     color: #F2AF29;
 }
 
+/***********CART***************/
+
 a.cart, .fa-shopping-cart {
     color: #fff;
     font-size: 18px;
@@ -160,6 +162,16 @@ a.cart:hover, .fa-shopping-cart:hover {
 
 .badge-warning-cart {
     vertical-align: top;
+}
+
+.remove-item{
+    -moz-transition: all 0.35s ease-in-out;
+    -webkit-transition: all 0.35s ease-in-out;
+    -o-transition: all 0.35s ease-in-out;
+}
+
+.remove-item:hover{
+    color:#AD343E;
 }
 
 .nav a {
