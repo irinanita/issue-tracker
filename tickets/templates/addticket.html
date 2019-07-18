@@ -8,7 +8,7 @@
 
 {% block content %}
 
-    <form method="POST" class="mt-5 mr-auto ml-auto clearfix" enctype="multipart/form-data">
+    <form method="POST" class="mt-1 mt-md-3 mr-auto ml-auto clearfix" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="form-row">
             <div class="form-group col-xs-12 col-md-6">
@@ -31,7 +31,7 @@
                 {{ add_ticket_form.image | as_crispy_field }}
             </div>
         </div>
-        <button class="btn btn-primary float-right mt-3" type="submit">Add</button>
+        <button class="btn btn-success float-right mt-3" type="submit">Submit</button>
     </form>
 
 {% endblock %}

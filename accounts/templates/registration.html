@@ -8,13 +8,13 @@
 
 {% block content %}
 
-    <form method="POST" class="mt-5 mr-auto ml-auto col-xs-12 col-lg-8 clearfix">
+    <form method="POST" class=" mt-1 mt-md-3 mr-auto ml-auto col-xs-12 col-lg-8 clearfix">
         {% csrf_token %}
         {{ registration_form | crispy }}
         <button class="btn btn-success float-right mt-3" type="submit">Register</button>
     </form>
 
-    <p class="text-center">If you already have an account, you can <a href='{% url 'user_login' %}'>Sign in</a></p>
+    <p class="text-center">If you already have an account, you can <a class="text-success" href='{% url 'user_login' %}'>Sign in</a></p>
 
 
 {% endblock %}

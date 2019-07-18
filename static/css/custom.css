@@ -326,3 +326,12 @@ a.cart:hover, .fa-shopping-cart:hover {
 .fa-question-circle-modal{
     font-size: 30px;
 }
+
+/***********Form**********/
+
+form{
+    border: 1px solid #00000014;
+    border-radius: 1rem;
+    padding: 3rem!important;
+    margin-bottom: 3rem!important;
+}
