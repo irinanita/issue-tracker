@@ -21,7 +21,7 @@ body {
     font-family: 'Karla', sans-serif;
 }
 
-h1,h2,h3,h4,h5{
+h1,h2,h3,h4,h5,h6{
     font-family: 'Rubik', sans-serif;
 }
 
@@ -102,7 +102,7 @@ a:hover {
     color: #fff !important;
 }
 
-.btn-success {
+.btn-success,.btn-danger {
     border-radius: .6rem;
     border-color: transparent;
     -moz-transition: all 0.35s ease-in-out;
@@ -110,6 +110,11 @@ a:hover {
     -o-transition: all 0.35s ease-in-out;
     color: #fff !important;
 }
+
+.btn-danger{
+    background-color: #AD343E;
+}
+
 
 .btn-outline-secondary{
     border-radius: .4rem;
