@@ -35,9 +35,23 @@ a:hover {
     color: #AD343E;
 }
 
-.card-add{
+.card-ad{
     border-radius:1.2rem;
+    -moz-transition: all 0.35s ease-in-out;
+    -webkit-transition: all 0.35s ease-in-out;
+    -o-transition: all 0.35s ease-in-out;
 }
+
+.card-ad:hover{
+    background-color: #F2AF29;
+    cursor: pointer;
+
+}
+
+ .btn-primary-ad{
+    background-color: #235046!important;
+}
+
 
 .fa-users-card{
     color:#235046;
