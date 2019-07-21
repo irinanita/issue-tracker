@@ -5,15 +5,23 @@
 {% load initialavatar %}
 
 {% block content %}
-
+    <!--Title & Badges-->
     <div class="row mt-4 mt-md-5">
         <div class="col-sm-12 col-md-auto">
             <h3 class="card-title">{{ ticket.title }}</h3>
         </div>
         <div class="col-sm-12 col-md-auto">
             <span class="badge badge-secondary badge-pill ml-2">{{ ticket.status }}</span>
-            <span class="badge badge-secondary badge-pill ml-2">{{ ticket.type }}</span>
-            <span class="badge badge-secondary badge-pill ml-2">{{ ticket.label }}</span>
+            {%  if ticket.type == 'bug' %}
+                <span class="badge badge-pill badge-danger ml-2">{{ ticket.type }}</span>
+            {%  elif ticket.type == 'feature' %}
+                <span class="badge badge-pill badge-success ml-2">{{ ticket.type }}</span>
+            {% endif %}
+            {%  if ticket.label == 'design' %}
+                <span class="badge badge-pill badge-warning ml-2">{{ ticket.label }}</span>
+            {%  elif ticket.label == 'functionality' %}
+                <span class="badge badge-pill badge-info ml-2">{{ ticket.label }}</span>
+            {% endif %}
         </div>
     </div>
     <div class="row">
@@ -24,6 +32,7 @@
         </div>
     </div>
     <hr>
+    <!-- Image & description -->
     <div class="row mt-3">
         {% if ticket.image %}
             <div class="col-12 col-md-8">
@@ -71,6 +80,7 @@
         </div>
     </div>
     <hr/>
+    <!-- Comments -->
     <h5 class="text-center">Comments</h5>
     {% for comment in comments %}
         <div class="row">
