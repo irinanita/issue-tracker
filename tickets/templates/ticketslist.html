@@ -9,7 +9,7 @@
         <div class="form-row mt-2">
             <div class="form-group col-4 col-md-2 ">
                 <button type="submit" value="all" class="btn btn-primary btn-block " name="search">All</button>
-                {% if filter.type == 'all' %}
+                {% if filter.type == 'all' or filter.type == 'search' or filter.type == '' or filter.type is None %}
                     <hr class="mt-2 hr-selected-type">
                 {% endif %}
             </div>
