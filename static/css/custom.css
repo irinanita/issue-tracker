@@ -111,7 +111,7 @@ a:hover {
     color: #fff !important;
 }
 
-.btn-danger{
+.btn-danger,.badge-danger{
     background-color: #AD343E;
 }
 
