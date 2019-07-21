@@ -28,7 +28,7 @@ def add_ticket(request):
             ticket.save()  # Now you can send it to DB
             sweetify.success(request, 'Ticket Added', text = 'Your ticket was successfully added to the list')
 
-            return redirect('ticketslist', ticket_type = 1)
+            return redirect('ticketslist')
     else:
         add_ticket_form = AddTicketForm()
     return render(request, 'addticket.html', {'add_ticket_form': add_ticket_form})
