@@ -77,8 +77,13 @@
                         {% for bug in bugs_list %}
                             <tr>
                                 <th scope="row">{{ forloop.counter }}</th>
-                                <td><a href="{% url 'ticket_details' bug.id %}">{{ bug.title }}</a><span
-                                        class="badge badge-secondary badge-pill ml-2">{{ bug.label }}</span></td>
+                                <td><a href="{% url 'ticket_details' bug.id %}">{{ bug.title }}</a>
+                                    {%  if bug.label == 'design' %}
+                                        <span class="badge badge-pill badge-warning">{{ bug.label }}</span>
+                                    {%  elif bug.label == 'functionality' %}
+                                        <span class="badge badge-pill badge-info">{{ bug.label }}</span>
+                                    {% endif %}
+                                </td>
                                 <td class="text-center">{{ bug.score }}</td>
                             </tr>
                         {% endfor %}
@@ -104,8 +109,13 @@
                         {% for feature in features_list %}
                             <tr>
                                 <th scope="row">{{ forloop.counter }}</th>
-                                <td><a href="{% url 'ticket_details' feature.id %}">{{ feature.title }}</a><span
-                                        class="badge badge-secondary badge-pill ml-2">{{ feature.label }}</span></td>
+                                <td><a href="{% url 'ticket_details' feature.id %}">{{ feature.title }}</a>
+                                    {%  if feature.label == 'design' %}
+                                        <span class="badge badge-pill badge-warning">{{ feature.label }}</span>
+                                    {%  elif feature.label == 'functionality' %}
+                                        <span class="badge badge-pill badge-info">{{ feature.label }}</span>
+                                    {% endif %}
+                                </td>
                                 <td class="text-center">{{ feature.score }}</td>
                             </tr>
                         {% endfor %}
@@ -129,9 +139,17 @@
                         {% for ticket in latest_tickets %}
                             <tr>
                                 <th scope="row">{{ forloop.counter }}</th>
-                                <td><a href="{% url 'ticket_details' ticket.id %}">{{ ticket.title }}</a><span
-                                        class="badge badge-secondary badge-pill ml-2">{{ ticket.label }}</span>
-                                    <span class="badge badge-secondary badge-pill ml-2">{{ ticket.type }}</span>
+                                <td><a href="{% url 'ticket_details' ticket.id %}">{{ ticket.title }}</a>
+                                    {%  if ticket.type == 'bug' %}
+                                        <span class="badge badge-pill badge-danger">{{ ticket.type }}</span>
+                                    {%  elif ticket.type == 'feature' %}
+                                        <span class="badge badge-pill badge-success">{{ ticket.type }}</span>
+                                    {% endif %}
+                                    {%  if ticket.label == 'design' %}
+                                        <span class="badge badge-pill badge-warning">{{ ticket.label }}</span>
+                                    {%  elif ticket.label == 'functionality' %}
+                                        <span class="badge badge-pill badge-info">{{ ticket.label }}</span>
+                                    {% endif %}
                                 </td>
                                 <td class="text-center">{{ ticket.score }}</td>
                             </tr>
