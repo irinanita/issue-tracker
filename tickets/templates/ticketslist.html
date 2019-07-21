@@ -22,37 +22,66 @@
     <!------------------------------------------------------------TICKET SECTION -->
     <!--------------------------SEARCH & FILTER -->
 
+
     <form method="GET" action="{% url 'search' %}" class="border-0 p-1 mt-3">
         <h6>Apply Filters</h6>
         <div class="form-row">
             <div class="form-group col-12 col-md col-lg-3">
-                <input type="text" class="form-control" id="keywords" name="q"
+                <input value="{{ filter.keyword }}" type="text" class="form-control" id="keywords" name="q"
                        placeholder="Title/Description contains...">
             </div>
             <div class="form-group col-6 col-md-auto">
-                <select class="form-control" id="status" name="status">
-                    <option selected disabled>Status</option>
-                    <option value="opened">Opened</option>
-                    <option value="closed">Closed</option>
+                <select class="form-control text-capitalize" id="status" name="status">
+                    {% if filter.status != None and filter.status != ''  %}
+                        <option value="{{ filter.status }}" selected>{{ filter.status }}</option>
+                        {% if filter.status == 'opened' %}
+                            <option value="closed">Closed</option>
+                        {% else %}
+                            <option value="opened">Opened</option>
+                        {% endif %}
+                    {% else %}
+                        <option selected disabled>Status</option>
+                        <option value="opened">Opened</option>
+                        <option value="closed">Closed</option>
+                    {% endif %}
                 </select>
             </div>
             <div class="form-group col-6 col-md-auto">
-                <select class="form-control" id="label" name="label">
-                    {% if query_label %}:
-                        <option selected>{{ query_label }}</option>
+                <select class="form-control text-capitalize" id="label" name="label">
+                    {% if filter.label != None and filter.label != '' %}:
+                        <option value="{{ filter.label }}" selected>{{ filter.label }}</option>
+                        {% if filter.label == 'functionality' %}
+                            <option value="design">Design</option>
+                        {% else %}
+                            <option value="functionality">Functionality</option>
+                        {% endif %}
                     {% else %}
                         <option selected disabled>Label</option>
+                        <option value="design">Design</option>
+                        <option value="functionality">Functionality</option>
                     {% endif %}
-                    <option value="functionality">Functionality</option>
-                    <option value="design">Design</option>
                 </select>
             </div>
             <div class="form-group col-12 col-md-6 col-lg-3">
-                <select class="form-control" id="sort" name="sort">
-                    <option selected disabled>Sort</option>
-                    <option value="recently added on top">Recently added on top</option>
-                    <option value="best score on top">Best score on top</option>
-                    <option value="oldest on top">Oldest on top</option>
+                <select class="form-control text-capitalize" id="sort" name="sort">
+                    {% if filter.sort != None and filter.sort != '' %}
+                        <option value="{{ filter.sort }}">{{ filter.sort }}</option>
+                        {% if filter.sort == 'recently added on top' %}
+                            <option value="best score on top">Best score on top</option>
+                            <option value="oldest on top">Oldest on top</option>
+                        {% elif filter.sort == 'best score on top'%}
+                             <option value="recently added on top">Recently added on top</option>
+                             <option value="oldest on top">Oldest on top</option>
+                        {% elif filter.sort == 'oldest on top' %}
+                            <option value="recently added on top">Recently added on top</option>
+                            <option value="best score on top">Best score on top</option>
+                        {% endif %}
+                    {% else %}
+                        <option selected disabled>Sort</option>
+                        <option value="recently added on top">Recently added on top</option>
+                        <option value="best score on top">Best score on top</option>
+                        <option value="oldest on top">Oldest on top</option>
+                    {% endif %}
                 </select>
             </div>
             <div class="form-group col-6 col-md-3 col-lg">
@@ -127,7 +156,7 @@
 
     {% else %}
         <div class="alert alert-warning mt-3" role="alert">
-            <p> Oooops...it looks like there are no tickets to display yet</p>
+            <p> <i class="fas fa-info-circle"></i> Oooops...it looks like there are no tickets to display</p>
         </div>
 
     {% endif %}
