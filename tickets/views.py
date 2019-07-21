@@ -35,12 +35,8 @@ def add_ticket(request):
 
 
 @login_required()
-def ticketslist(request, ticket_type = None):
+def ticketslist(request):
     tickets_list = Ticket.objects.all()
-    if ticket_type == "2":
-        tickets_list = tickets_list.filter(type__contains = "bug")
-    if ticket_type == "3":
-        tickets_list = tickets_list.filter(type__contains = "feature")
 
     paginator = Paginator(tickets_list, 2)
     page = request.GET.get('page')
