@@ -66,17 +66,28 @@
 
 
             <!-- Will display on medium and large devices -->
-            <ul class="navbar-nav ml-auto d-none d-md-flex">
+            <ul class="navbar-nav align-items-md-center ml-auto d-none d-md-flex">
                 <li class="nav-item mr-md-2 ">
-                    <a class="cart" href="{% url 'view_cart' %}"><i class="fas fa-shopping-cart"></i></a>
-                    {% if cart_items %}
-                        <span class="badge badge-pill badge-warning badge-warning-cart ml-n2">{{ cart_items|length }}</span>
-                    {% endif %}
+                    <div class="navbar-cart">
+                        <a class="cart" href="{% url 'view_cart' %}"><i class="fas fa-shopping-cart"></i></a>
+                            {% if cart_items %}
+                                <span class="badge badge-pill badge-warning badge-warning-cart ml-n2">{{ cart_items|length }}</span>
+                            {% endif %}
+                    </div>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        {% get_initial_avatar user 30 'circle' %}
+
+                {% if user.userprofile.avatar %}
+                    <div class="img-container rounded-circle ml-auto mr-auto d-inline-block"
+                             style="background-image: url('{{ user.userprofile.avatar.url }}'); background-size: cover; background-repeat: no-repeat; height:30px;width:30px">
+                    </div>
+                {% else %}
+                    {% get_initial_avatar user 30 'circle' %}
+                {% endif %}
+
+
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                         <div class="dropdown-item-text">Logged in as {{ user }}</div>
