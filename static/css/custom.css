@@ -116,7 +116,7 @@ a:hover {
 }
 
 
-.btn-outline-secondary{
+.btn-outline-secondary,.btn-sm{
     border-radius: .4rem;
 }
 
