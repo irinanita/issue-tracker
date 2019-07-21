@@ -21,6 +21,9 @@ def search(request):
         query_label = request.GET.get('label')
         query_sort = request.GET.get('sort')
 
+        filter = {'keyword': query_keyword, 'status': query_status,
+                  'label': query_label, 'sort': query_sort}
+
         if is_valid_query_param(query_keyword):
             # Searching whether keywords are present in the title or in the description
             query_set = query_set.filter(
@@ -44,8 +47,5 @@ def search(request):
         tickets = paginator.page(1)
     except EmptyPage:
         tickets = paginator.page(paginator.num_pages)
-
-    filter = {'keyword': query_keyword, 'status': query_status,
-              'label': query_label, 'sort': query_sort}
 
     return render(request, "ticketslist.html", {"tickets": tickets, "filter": filter})
