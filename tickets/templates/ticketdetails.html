@@ -38,6 +38,8 @@
 
     <div class="row">
         <div class="col-auto ml-auto">
+            <!-- If it is a feature voting for it will require confirmation from module -->
+            {% if ticket.type == 'feature' %}
             <!-- Button trigger modal -->
             <span class="ticket-vote text-success" data-toggle="modal" data-target="#modal"><i class="fas fa-plus-circle mr-2"></i>UpVote</span>
             <!-- Modal -->
@@ -63,8 +65,9 @@
                     </div>
                 </div>
             </div>
-
-
+            {% else %}
+                 <a href="{% url 'upvote' ticket.id %}" class="ticket-vote text-success"><i class="fas fa-plus-circle mr-2"></i>UpVote</a>
+            {% endif %}
         </div>
     </div>
     <hr/>
@@ -100,7 +103,7 @@
         <hr>
     {% endfor %}
     <h5 class="text-center mt-4">Add a comment:</h5>
-    <form method="POST" class="mr-auto ml-auto col-xs-12 col-lg-8 clearfix">
+    <form method="POST" class="mr-auto ml-auto col-xs-12 col-lg-8 border-0 clearfix">
         {% csrf_token %}
         {{ add_comment_form | crispy }}
         <button class="btn btn-success float-right mt-3" type="submit">Add Comment</button>
