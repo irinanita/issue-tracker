@@ -1,29 +1,32 @@
 {% extends 'base.html' %} {% block content %}
     <h1>Tickets</h1>
+    {{ filter.type }}
 
-    <!------------------------------------------------TABS ALL - BUGS - FEATURES -->
-    <div class="row mt-4">
-        <div class="col-12">
-            <a href="{% url 'ticketslist' ticket_type=1 %}" class="btn btn-primary mr-md-1">All</a>
-            <a href="{% url 'ticketslist' ticket_type=2 %}" class="btn btn-danger mr-md-1">Bugs</a>
-            <a href="{% url 'ticketslist' ticket_type=3 %}" class="btn btn-success mr-md-1">Features</a>
-        </div>
-    </div>
-    {% if messages %}
-        {% for message in messages %}
-
-            <div class="alert alert-secondary mt-3" role="alert">
-                {{ message }}
-            </div>
-
-        {% endfor %}
-    {% endif %}
-
-    <!------------------------------------------------------------TICKET SECTION -->
-    <!--------------------------SEARCH & FILTER -->
-
+    <!--TICKET SECTION -->
+    <!--SEARCH & FILTER -->
 
     <form method="GET" action="{% url 'search' %}" class="border-0 p-1 mt-3">
+        <!--TABS ALL - BUGS - FEATURES -->
+        <div class="form-row mt-2">
+            <div class="form-group col-4 col-md-2 ">
+                <button type="submit" value="all" class="btn btn-primary btn-block " name="search">All</button>
+                {% if filter.type == 'all' %}
+                    <hr class="mt-2 hr-selected-type">
+                {% endif %}
+            </div>
+            <div class="form-group col-4 col-md-2">
+                <button type="submit" value="bug" class="btn btn-danger btn-block " name="search">Bugs</button>
+                {% if filter.type == 'bug' %}
+                    <hr class="mt-2 hr-selected-type hr-selected-type__bug">
+                {% endif %}
+            </div>
+            <div class="form-group col-4 col-md-2 ">
+                <button type="submit" value="feature" class="btn btn-success btn-block " name="search">Features</button>
+                {% if filter.type == 'feature' %}
+                    <hr class="mt-2 hr-selected-type hr-selected-type__feature">
+                {% endif %}
+            </div>
+        </div>
         <h6>Apply Filters</h6>
         <div class="form-row">
             <div class="form-group col-12 col-md col-lg-3">
@@ -32,7 +35,7 @@
             </div>
             <div class="form-group col-6 col-md-auto">
                 <select class="form-control text-capitalize" id="status" name="status">
-                    {% if filter.status != None and filter.status != ''  %}
+                    {% if filter.status != None and filter.status != '' %}
                         <option value="{{ filter.status }}" selected>{{ filter.status }}</option>
                         {% if filter.status == 'opened' %}
                             <option value="closed">Closed</option>
@@ -69,9 +72,9 @@
                         {% if filter.sort == 'recently added on top' %}
                             <option value="best score on top">Best score on top</option>
                             <option value="oldest on top">Oldest on top</option>
-                        {% elif filter.sort == 'best score on top'%}
-                             <option value="recently added on top">Recently added on top</option>
-                             <option value="oldest on top">Oldest on top</option>
+                        {% elif filter.sort == 'best score on top' %}
+                            <option value="recently added on top">Recently added on top</option>
+                            <option value="oldest on top">Oldest on top</option>
                         {% elif filter.sort == 'oldest on top' %}
                             <option value="recently added on top">Recently added on top</option>
                             <option value="best score on top">Best score on top</option>
@@ -85,16 +88,23 @@
                 </select>
             </div>
             <div class="form-group col-6 col-md-3 col-lg">
+             {% if filter.type == '' or filter.type == 'all' or filter.type == 'search' %}
                 <button type="submit" value="search" class="btn btn-success btn-block " name="search">Apply</button>
+             {% elif filter.type == 'bug' %}
+                <button type="submit" value="bug" class="btn btn-success btn-block " name="search">Apply</button>
+             {% elif filter.type == 'feature' %}
+                <button type="submit" value="feature" class="btn btn-success btn-block " name="search">Apply</button>
+             {% endif %}
             </div>
             <div class="form-group col-6 col-md-3 col-lg">
-                <button type="submit" value="reset" class="btn btn-outline-secondary btn-block " name="reset">Reset</button>
+                <button type="submit" value="reset" class="btn btn-outline-secondary btn-block " name="reset">Reset
+                </button>
             </div>
         </div>
     </form>
 
     <!-----------------------------TICKETS LIST -->
-    {% if tickets  %}
+    {% if tickets %}
         {% for ticket in tickets %}
             <div class="card mt-3 mb-2 mb-md-4">
                 <div class="card-body">
@@ -129,8 +139,8 @@
                 </div>
             </div>
         {% endfor %}
-<!-------------------------------------------------------Pagination-->
-    <div class="pagination  mt-5">
+        <!-------------------------------------------------------Pagination-->
+        <div class="pagination  mt-5">
     <span class="step-links">
         {% if tickets.has_previous %}
             {% if 'search' in request.GET %}
@@ -152,11 +162,11 @@
             {% endif %}
         {% endif %}
     </span>
-    </div>
+        </div>
 
     {% else %}
         <div class="alert alert-warning mt-3" role="alert">
-            <p> <i class="fas fa-info-circle"></i> Oooops...it looks like there are no tickets to display</p>
+            <p><i class="fas fa-info-circle"></i> Oooops...it looks like there are no tickets to display</p>
         </div>
 
     {% endif %}

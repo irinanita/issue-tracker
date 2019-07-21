@@ -340,3 +340,19 @@ form{
     padding: 3rem!important;
     margin-bottom: 3rem!important;
 }
+
+
+/***********Filter & Search**********/
+.hr-selected-type{
+    width: 90%;
+    border-top:2px solid #225046;
+}
+
+.hr-selected-type__bug{
+    border-top:2px solid  #AD343E;
+}
+
+.hr-selected-type__feature{
+    border-top:2px solid  #28a745;
+}
+

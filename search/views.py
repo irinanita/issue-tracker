@@ -15,14 +15,18 @@ def search(request):
     # fetch all tickets unfiltered
     query_set = Ticket.objects.all()
     # check if the submitted form was a filter/search or a reset
-    if request.GET.get('search') != '' and request.GET.get('search') is not None:
+    if is_valid_query_param('search'):
+        query_type = request.GET.get('search')
         query_keyword = request.GET.get('q')
         query_status = request.GET.get('status')
         query_label = request.GET.get('label')
         query_sort = request.GET.get('sort')
 
         filter = {'keyword': query_keyword, 'status': query_status,
-                  'label': query_label, 'sort': query_sort}
+                  'label': query_label, 'sort': query_sort,'type':query_type}
+
+        if query_type == 'bug' or query_type == 'feature':
+            query_set = query_set.filter(type__icontains = query_type)
 
         if is_valid_query_param(query_keyword):
             # Searching whether keywords are present in the title or in the description
