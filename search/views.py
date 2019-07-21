@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.db.models import Q
 from tickets.models import Ticket
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -14,16 +14,16 @@ def is_valid_query_param(param):
 def search(request):
     # fetch all tickets unfiltered
     query_set = Ticket.objects.all()
+    query_type = request.GET.get('search')
     # check if the submitted form was a filter/search or a reset
-    if is_valid_query_param('search'):
-        query_type = request.GET.get('search')
+    if is_valid_query_param(query_type) and query_type != 'reset':
         query_keyword = request.GET.get('q')
         query_status = request.GET.get('status')
         query_label = request.GET.get('label')
         query_sort = request.GET.get('sort')
 
         filter = {'keyword': query_keyword, 'status': query_status,
-                  'label': query_label, 'sort': query_sort,'type':query_type}
+                  'label': query_label, 'sort': query_sort, 'type': query_type}
 
         if query_type == 'bug' or query_type == 'feature':
             query_set = query_set.filter(type__icontains = query_type)
@@ -43,6 +43,9 @@ def search(request):
                 query_set = query_set.order_by('creation_date')
             if query_sort == "best score on top":
                 query_set = query_set.order_by('-score')
+    else:
+        return redirect('ticketslist')
+
     paginator = Paginator(query_set, 2)
     page = request.GET.get('page')
     try:
