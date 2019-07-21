@@ -121,7 +121,7 @@
                             {% endif %}
                             {%  if ticket.label == 'design' %}
                                 <span class="badge badge-pill badge-warning ml-2">{{ ticket.label }}</span>
-                            {%  elif ticket.type == 'feature' %}
+                            {%  elif ticket.label == 'functionality' %}
                                 <span class="badge badge-pill badge-info ml-2">{{ ticket.label }}</span>
                             {% endif %}
                         </div>
