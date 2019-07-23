@@ -37,6 +37,11 @@ a:hover {
 
 /************************CARD******************/
 
+.card-header {
+    background-color: transparent;
+    border-bottom: transparent;
+}
+
 .card-title > a:hover {
     color: #AD343E;
 }
@@ -51,7 +56,21 @@ a:hover {
 .card-ad:hover {
     background-color: #F2AF29;
     cursor: pointer;
+}
 
+.card-ad-buy{
+    -moz-transition: all 0.35s ease-in-out;
+    -webkit-transition: all 0.35s ease-in-out;
+    -o-transition: all 0.35s ease-in-out;
+}
+
+.card-ad-buy:hover {
+    cursor: pointer;
+}
+
+.list-group-item {
+    border: transparent;
+    background-color: transparent;
 }
 
 .btn-primary-ad {
