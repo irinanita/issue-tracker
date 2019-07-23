@@ -24,9 +24,15 @@
                     <img src="https://live.staticflickr.com/774/20013034233_19f520eefb_b.jpg" class="d-block w-100"
                          alt="...">
                     <div class="carousel-caption d-none d-md-block">
-                        <h3>Demo Version Absolutely FREE</h3>
-                        <p>Try it now yourself and track issues and features of the issue tracker. Mindblowing!!!</p>
-                        <a class="btn btn-primary btn-danger mt-3" href="{% url 'registration' %}" role="button">Try it Now</a>
+                        {% if user.is_authenticated %}
+                            <h3>Flexible and Easyt to use</h3>
+                            <p> Complete version is customisable and easy to use</p>
+                        <a class="btn btn-primary btn-danger mt-3" href="{% url 'checkout-app' %}" role="button">Buy Now</a>
+                        {% else %}
+                            <h3>Demo Version Absolutely FREE</h3>
+                            <p>Try it now yourself and track issues and features of the issue tracker. Mindblowing!!!</p>
+                            <a class="btn btn-primary btn-danger mt-3" href="{% url 'registration' %}" role="button">Try it Now</a>
+                        {% endif %}
                     </div>
                 </div>
                 <div class="carousel-item">
@@ -174,7 +180,7 @@
                             <li class="list-group-item">Flexibility</li>
                             <li class="list-group-item">Great Community Support</li>
                         </ul>
-                        <a class="btn btn-primary btn-danger mt-3" href="{% url 'registration' %}" role="button" style="margin:0 auto;">Try it Now</a>
+                        <a class="btn btn-primary btn-danger mt-3" href="{% url 'checkout-app' %}" role="button" style="margin:0 auto;">Buy it Now</a>
                     </div>
                 </div>
             </div>
