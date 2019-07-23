@@ -6,7 +6,6 @@
 #e0e0ce - bone
 #ffffff - white
 ***/
-
 @import url('https://fonts.googleapis.com/css?family=Karla:400,700|Rubik:400,500&display=swap');
 
 html,
@@ -21,7 +20,7 @@ body {
     font-family: 'Karla', sans-serif;
 }
 
-h1,h2,h3,h4,h5,h6{
+h1, h2, h3, h4, h5, h6 {
     font-family: 'Rubik', sans-serif;
 }
 
@@ -42,41 +41,38 @@ a:hover {
     color: #AD343E;
 }
 
-.card-ad{
-    border-radius:1.2rem;
+.card-ad {
+    border-radius: 1.2rem;
     -moz-transition: all 0.35s ease-in-out;
     -webkit-transition: all 0.35s ease-in-out;
     -o-transition: all 0.35s ease-in-out;
 }
 
-.card-ad:hover{
+.card-ad:hover {
     background-color: #F2AF29;
     cursor: pointer;
 
 }
 
- .btn-primary-ad{
-    background-color: #235046!important;
+.btn-primary-ad {
+    background-color: #235046 !important;
 }
 
-
-.fa-users-card{
-    color:#235046;
+.fa-users-card {
+    color: #235046;
 }
 
-.fa-smile-card{
+.fa-smile-card {
     color: #F2AF29;
 }
 
-.fa-shapes-card{
-    color:#AD343E;
+.fa-shapes-card {
+    color: #AD343E;
 }
 
-.fa-box-open-card{
-    color:#444444;
+.fa-box-open-card {
+    color: #444444;
 }
-
-
 
 /************************NAV******************/
 
@@ -102,7 +98,7 @@ a:hover {
     color: #fff !important;
 }
 
-.btn-success,.btn-danger {
+.btn-success, .btn-danger {
     border-radius: .6rem;
     border-color: transparent;
     -moz-transition: all 0.35s ease-in-out;
@@ -111,12 +107,11 @@ a:hover {
     color: #fff !important;
 }
 
-.btn-danger,.badge-danger{
+.btn-danger, .badge-danger {
     background-color: #AD343E;
 }
 
-
-.btn-outline-secondary,.btn-sm{
+.btn-outline-secondary, .btn-sm {
     border-radius: .4rem;
 }
 
@@ -166,7 +161,7 @@ a:hover {
 
 .footer {
     flex-shrink: 0;
-    padding:10px;
+    padding: 10px;
 }
 
 .footer,
@@ -214,14 +209,14 @@ a.cart:hover, .fa-shopping-cart:hover {
     vertical-align: top;
 }
 
-.remove-item{
+.remove-item {
     -moz-transition: all 0.35s ease-in-out;
     -webkit-transition: all 0.35s ease-in-out;
     -o-transition: all 0.35s ease-in-out;
 }
 
-.remove-item:hover{
-    color:#AD343E;
+.remove-item:hover {
+    color: #AD343E;
 }
 
 .nav a {
@@ -258,6 +253,10 @@ a.cart:hover, .fa-shopping-cart:hover {
     display: inline;
 }
 
+.navbar-cart {
+    height: 34px;
+}
+
 /*********************PROFILE******************/
 
 #id_birth_date_month {
@@ -275,13 +274,11 @@ a.cart:hover, .fa-shopping-cart:hover {
     width: 20%;
 }
 
-
 .profile-picture .initial-avatar {
     display: block;
     margin-left: auto;
     margin-right: auto;
 }
-
 
 /****Alerts****/
 
@@ -293,21 +290,18 @@ a.cart:hover, .fa-shopping-cart:hover {
     background-color: #317f70;
 }
 
-.ticket-vote{
-     -moz-transition: all 0.35s ease-in-out;
+.ticket-vote {
+    -moz-transition: all 0.35s ease-in-out;
     -webkit-transition: all 0.35s ease-in-out;
     -o-transition: all 0.35s ease-in-out;
 }
 
-
-.ticket-vote:hover{
-    color: #235046!important;
-    cursor:pointer;
+.ticket-vote:hover {
+    color: #235046 !important;
+    cursor: pointer;
 }
 
-
 /***********Comment Section**********/
-
 
 .img-container {
     overflow: hidden;
@@ -317,42 +311,41 @@ a.cart:hover, .fa-shopping-cart:hover {
     font-size: 0.8rem;
 }
 
-.comment-content{
+.comment-content {
     padding-bottom: 25px;
 }
 
-.comment-date{
+.comment-date {
     position: absolute;
-    bottom:0;
+    bottom: 0;
     right: 0;
 }
 
 /***********Modal**********/
-.fa-question-circle-modal{
+.fa-question-circle-modal {
     font-size: 30px;
 }
 
 /***********Form**********/
 
-form{
+form {
     border: 1px solid #00000014;
     border-radius: 1rem;
-    padding: 3rem!important;
-    margin-bottom: 3rem!important;
+    padding: 3rem !important;
+    margin-bottom: 3rem !important;
 }
-
 
 /***********Filter & Search**********/
-.hr-selected-type{
+.hr-selected-type {
     width: 90%;
-    border-top:2px solid #225046;
+    border-top: 2px solid #225046;
 }
 
-.hr-selected-type__bug{
-    border-top:2px solid  #AD343E;
+.hr-selected-type__bug {
+    border-top: 2px solid #AD343E;
 }
 
-.hr-selected-type__feature{
-    border-top:2px solid  #28a745;
+.hr-selected-type__feature {
+    border-top: 2px solid #28a745;
 }
 

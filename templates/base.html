@@ -24,12 +24,12 @@
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"></script>
     <!--SWEET ALERT-->
-{#    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>#}
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
     {% block head_js %}
     {% endblock head_js %}
 </head>
 <body>
+ <!--NAVBAR-->
 {% if user.is_authenticated %}
     <nav class="navbar navbar-expand-md navbar-dark">
         <a class="navbar-brand" href="{% url 'index' %}">Issue Tracker</a>
