@@ -61,10 +61,58 @@ def checkout(request):
                 sweetify.error(request, 'Sorry', text = 'Unable to take payment', persistent = 'Close')
         else:
             print(payment_form.errors)
-            sweetify.error(request, 'Sorry', text = 'We were unable to take a payment with that card!', persistent = 'Close')
+            sweetify.error(request, 'Sorry', text = 'We were unable to take a payment with that card!',
+                           persistent = 'Close')
     else:
         payment_form = MakePaymentForm()
         order_form = OrderForm()
 
     return render(request, "checkout.html",
                   {'order_form': order_form, 'payment_form': payment_form, 'publishable': settings.STRIPE_PUBLISHABLE})
+
+
+@login_required()
+def checkout_buy_app(request):
+    if request.method == "POST":
+        order_form = OrderForm(request.POST)
+        payment_form = MakePaymentForm(request.POST)
+
+        if payment_form.is_valid():
+            print('order form is valid')
+
+        if order_form.is_valid() and payment_form.is_valid():
+            order = order_form.save(commit = False)
+            order.date = timezone.now()
+            order.user = request.user
+            order.save()
+
+            try:
+                customer = stripe.Charge.create(
+                    amount = int(49 * 100),
+                    currency = "EUR",
+                    description = request.user.email,
+                    card = payment_form.cleaned_data['stripe_id'],
+                )
+            except stripe.error.CardError:
+                sweetify.error(request, 'Ooops', text = 'Your username or password is incorrect', persistent = 'Close')
+
+            if customer.paid:
+
+                return redirect("thank-you")
+            else:
+                sweetify.error(request, 'Sorry', text = 'Unable to take payment', persistent = 'Close')
+        else:
+            print(payment_form.errors)
+            sweetify.error(request, 'Sorry', text = 'We were unable to take a payment with that card!',
+                           persistent = 'Close')
+    else:
+        payment_form = MakePaymentForm()
+        order_form = OrderForm()
+
+    return render(request, "checkout-app.html",
+                  {'order_form': order_form, 'payment_form': payment_form, 'publishable': settings.STRIPE_PUBLISHABLE})
+
+
+@login_required()
+def thank_you(request):
+    return render(request, 'thank-you.html')
