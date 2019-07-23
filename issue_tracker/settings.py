@@ -182,6 +182,10 @@ EMAIL_PORT = os.environ.get('EMAIL_PORT')
 EMAIL_HOST_USER = os.environ.get('EMAIL_ADDRESS')
 EMAIL_HOST_PASSWORD = os.environ.get('PASSWORD')
 
+# Configure Django App for Heroku.
+import django_heroku
+django_heroku.settings(locals())
+
 
 
 
