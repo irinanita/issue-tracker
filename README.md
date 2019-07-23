@@ -84,6 +84,7 @@ Python is a programming language that lets you work quickly and integrate system
 [Django Initial Avatars](https://pypi.org/project/django-initial-avatars/) - Django app which generates avatars based on username and initials
 [Dj Database URL](https://pypi.org/project/dj-database-url/) - a package that allows us to connect to a database url, allow to use DATABASE_URL environment variable to configure our Django application.
 [Whitenoise](https://pypi.org/project/whitenoise/) - allows to serve static files from Heroku without relying on other services
+[Gunicorn](https://pypi.org/project/gunicorn/) - WSGI HTTP Server for UNIX
 
 ## Database
 
