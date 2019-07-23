@@ -162,7 +162,7 @@ STATIC_URL = '/static/'
 
 #Static files not tied to a particular app
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static")
+    os.path.join(BASE_DIR, "issue_tracker/static")
 ]
 
 
