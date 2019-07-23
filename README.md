@@ -82,6 +82,8 @@ Python is a programming language that lets you work quickly and integrate system
 [Crispy Forms](https://django-crispy-forms.readthedocs.io/en/latest/) - Used for styling Bootstrap4 forms in Django
 [Django Countries](https://pypi.org/project/django-countries/) - A Django application that provides country choices for use with forms, flag icons static files, and a country field for models.
 [Django Initial Avatars](https://pypi.org/project/django-initial-avatars/) - Django app which generates avatars based on username and initials
+[Dj Database URL](https://pypi.org/project/dj-database-url/) - a package that allows us to connect to a database url, allow to use DATABASE_URL environment variable to configure our Django application.
+[Whitenoise](https://pypi.org/project/whitenoise/) - allows to serve static files from Heroku without relying on other services
 
 ## Database
 
