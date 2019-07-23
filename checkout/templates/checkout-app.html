@@ -14,34 +14,28 @@
 
 {% block content %}
     <h2 class="mt-3">Checkout</h2>
-    <table class="table mt-3">
-        <thead>
+    <table class="table table-bordered mt-3">
+        <thead class="thead-dark" >
         <tr>
             <th scope="col">#</th>
-            <th scope="col">Ticket Title</th>
-            <th scope="col">Type</th>
-            <th scope="col">Label</th>
+            <th scope="col">Item</th>
+            <th scope="col">Total</th>
         </tr>
         </thead>
         <tbody>
-        {% for item in cart_items %}
             <tr>
-                <th scope="row">{{ forloop.counter }}</th>
-                <td>{{ item.ticket.title }}</td>
-                <td>{{ item.ticket.type }}</td>
-                <td>{{ item.ticket.label }}</td>
+                <th scope="row">1.</th>
+                <td>Issue Tracker Complete Edition</td>
+                <td>49 EUR</td>
             </tr>
-        {% endfor %}
         </tbody>
     </table>
-    <div class="row">
-        <span class="mr-2 ml-auto">Total</span><span>{{ total_value }}</span>
-    </div>
+
     <div class="alert alert-danger mt-3" role="alert " id="credit-card-errors" style="display: none;">
         <div class="errorList" id="stripe-error-message"></div>
     </div>
 
-    <form role="form" class="form-row" method="post" id="payment-form" action="{% url 'checkout' %}">
+    <form role="form" class="form-row mt-5" method="post" id="payment-form" action="{% url 'thank-you' %}">
         <legend>Payment Details</legend>
 
         <div class="form-group col-md-6">

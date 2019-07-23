@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block page_heading %} Thank you for purchasing {% endblock %}
+{% block content %}
+
+    <div class="row">
+        <div class="mt-3 ml-auto mr-auto w-50">
+            <img class="img-fluid rounded-circle" src="{% static 'img/thank-you.jpg' %}" alt="Thank You">
+        </div>
+    </div>
+    <p class="text-center mt-4 "> Enjoy </p>
+    <h5 class="text-center"><a class="text-success" href="{{ MEDIA_URL }}your-issue-tracker.zip">
+        <strong>Download the app</strong></a></h5>
+
+{% endblock %}
