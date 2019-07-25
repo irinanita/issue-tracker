@@ -143,36 +143,35 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 
-
 # Static files not tied to a particular app
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "issue_tracker/../static")
-]
+    os.path.join(BASE_DIR, 'static'),
+    ]
 
-AWS_S3_OBJECT_PARAMETERS = {'Expires': 'Thu, 31 Dec 2099 20:00:00 GMT', 'CacheControl': 'max-age=94608000'}
+AWS_S3_OBJECT_PARAMETERS = {
+    'Expires': 'Thu, 31 Dec 2099 20:00:00 GMT',
+    'CacheControl': 'max-age=94608000'
+}
+
 AWS_STORAGE_BUCKET_NAME = 'irinas-issue-tracker'
 AWS_S3_REGION_NAME = 'eu-west-1'
 AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
 AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
 AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 
-
-STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
-
 STATICFILES_LOCATION = 'static'
-
+#To allow django-admin.py collectstatic to automatically put your static files in your bucket
 STATICFILES_STORAGE = 'customstorages.StaticStorage'
 
 STATIC_URL = '/static/'
+#This is a path used to show that any directory called static can contain static files
 
 MEDIAFILES_LOCATION = 'media'
-
 DEFAULT_FILE_STORAGE = 'customstorages.MediaStorage'
 
-MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join( BASE_DIR, 'media')
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
+#Django Messages
 MESSAGE_STORAGE = "django.contrib.messages.storage.session.SessionStorage"
 
 STRIPE_PUBLISHABLE = os.getenv('STRIPE_PUBLISHABLE')
