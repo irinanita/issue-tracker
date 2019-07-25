@@ -299,6 +299,12 @@ a.cart:hover, .fa-shopping-cart:hover {
     margin-right: auto;
 }
 
+/*****Password Reset******/
+
+.fa-envelope__big{
+    font-size: 82px;
+}
+
 /****Alerts****/
 
 .swal2-confirm {
