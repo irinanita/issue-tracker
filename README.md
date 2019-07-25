@@ -94,11 +94,18 @@ Python is a programming language that lets you work quickly and integrate system
 
 [Gunicorn](https://pypi.org/project/gunicorn/) - WSGI HTTP Server for UNIX
 
+[AWS S3 services](https://s3.console.aws.amazon.com) - used to store media and static files in deployment  
+
+[Django Storages](https://django-storages.readthedocs.io/en/latest/) - a collection of custom storage backends for Django
+
+[Boto3](https://pypi.org/project/boto3/) -Boto3 is the Amazon Web Services (AWS) Software Development Kit (SDK) for Python, which allows Python to use of services like Amazon S3 
+
 ## Database
 
 SQL Database that comes with Django for the development environment and Postgress in deployment. 
 
 [Database Schema](https://dbdiagram.io/d/5ced18341f6a891a6a657c0a) - cloud database service for MongoDB databases
+
 
 
 ## Testing
