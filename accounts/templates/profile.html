@@ -20,7 +20,7 @@
         <div class="col-xs-12 col-md-4">
             <div class="profile-picture">
                 {% if user_profile.avatar %}
-                    <img class="rounded-circle d-block mr-auto ml-auto" src="{{ MEDIA_URL }}{{ user_profile.avatar }}"
+                    <img class="rounded-circle d-block mr-auto ml-auto" src="{{ user_profile.avatar.url }}"
                          alt="Profile Image">
                 {% else %}
                     {% get_initial_avatar user 100 'circle' %}

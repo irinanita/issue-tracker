@@ -36,7 +36,7 @@
     <div class="row mt-3">
         {% if ticket.image %}
             <div class="col-12 col-md-8">
-                <img class="img-fluid" src="{{ MEDIA_URL }}{{ ticket.image }}"/>
+                <img class="img-fluid" src="{{ ticket.image.url }}"/>
             </div>
         {% endif %}
         <div class="col-12 col-md mt-3 mt-md-0">
