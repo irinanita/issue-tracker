@@ -161,30 +161,49 @@ It is also possible to configure GitHub integration for a Heroku app, Heroku can
 [Read more here](https://devcenter.heroku.com/articles/github-integration)
 
 ### Serving Static & Media files
-For this project static and media files are served using Amazon Web Services - S3
+For this project static and media files are served using Amazon Web Services - S3. 
+
+> Why? If we only had to serve static files for our project, using `Whitenoise` would have serve our purpose. **BUT**
+there is an issue when it comes to serving **MEDIA FILES**, Heroku dynos have limited life span, and when they die and 
+get replaced, the files within them are lost.
 
 #### Prerequisites
 
-* The Heroku CLI has been installed. More information on how to do it here [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli)
-* A Heroku application has been created for the current project;
+* The Heroku CLI . More information on how to do it here [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli)
+* A Heroku application for the current project;
 > Note: If you followed the Deployment step described above this requisites should be already met
+* Django does not support serving static files in production. However, [Whitenoise](https://pypi.org/project/whitenoise/) 
+was designed to help us with this. Install it with this command:
+    * `pip install whitenoise`
+    * You should also add it to the projects `MIDDLEWARE` section in `setting.py`:
+    
+    ```
+    MIDDLEWARE = [
+        ...,
+        'whitenoise.middleware.WhiteNoiseMiddleware',
+    ]
+    ```
+* As mentioned above we have to set up Django media handler to put the files somewhere permanent. For this purpose
+ two Python packages were used: [Django Storages](https://django-storages.readthedocs.io/en/latest/) 
+ and [Boto3](https://pypi.org/project/boto3/). 
+     * Run the following command to install:
+    `pip install django-storages boto3`
+     * In `settings.py` add `storages` to the `INSTALLED_APPS`:
+     ```
+     INSTALLED_APPS = (
+      ...,
+      'storages',
+      )
+     ```
+           
 * An AWS S3 bucket has been created. In order to do this:
     * Create an [AWS Account](https://aws.amazon.com/premiumsupport/knowledge-center/create-and-activate-aws-account/)
     * Create a [S3 bucket](https://docs.aws.amazon.com/AmazonS3/latest/gsg/CreatingABucket.html)
-* You also need to install two Python packages: [Django Storages](https://django-storages.readthedocs.io/en/latest/) 
-and [Boto3](https://pypi.org/project/boto3/). 
 
 #### Setup in Heroku
 
 * Add AWS credential as configuration variables in Heroku. You need to set up the following variables: 
 `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`
-* Add `storages` to `INSTALLED_APPS` in `settings.py`:
-   ``` 
-   INSTALLED_APPS = (
-      ...,
-      'storages',
-     )
-     ```
 
 * If you want, this is optional, add this to your common settings:
     ```
@@ -216,7 +235,7 @@ and [Boto3](https://pypi.org/project/boto3/).
     DEFAULT_FILE_STORAGE = 'customstorages.MediaStorage'
     
     ```
-    Add `customstorages.py` in the project's root directory with the following code: 
+    Add `customstorages.py` to the project's root directory with the following code: 
    
     ```
     from django.conf import settings
