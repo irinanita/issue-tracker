@@ -178,7 +178,7 @@ was designed to help us with this. Install it with this command:
     * `pip install whitenoise`
     * You should also add it to the projects `MIDDLEWARE` section in `setting.py`:
     
-    ```
+    ```python
     MIDDLEWARE = [
         ...,
         'whitenoise.middleware.WhiteNoiseMiddleware',
@@ -190,7 +190,7 @@ was designed to help us with this. Install it with this command:
      * Run the following command to install:
     `pip install django-storages boto3`
      * In `settings.py` add `storages` to the `INSTALLED_APPS`:
-     ```
+     ```python
      INSTALLED_APPS = (
       ...,
       'storages',
@@ -209,7 +209,7 @@ was designed to help us with this. Install it with this command:
 ##### Settings.py
 
 * If you want, this is optional, add this to your common settings:
-    ```
+    ```python
     AWS_S3_OBJECT_PARAMETERS = {
         'Expires': 'Thu, 31 Dec 2099 20:00:00 GMT',
         'CacheControl': 'max-age=94608000'
@@ -222,7 +222,7 @@ was designed to help us with this. Install it with this command:
 
 * Add this code to your settings, changing the first four values accordingly:
 
-    ```
+    ```python
     AWS_STORAGE_BUCKET_NAME = 'BUCKET_NAME'
     AWS_S3_REGION_NAME = 'REGION_NAME'  # e.g. us-east-2
     AWS_ACCESS_KEY_ID = 'xxxxxxxxxxxxxxxxxxxx'
@@ -240,7 +240,7 @@ was designed to help us with this. Install it with this command:
     ```
     Add `customstorages.py` to the project's root directory with the following code: 
    
-    ```
+    ```python
     from django.conf import settings
     from storages.backends.s3boto3 import S3Boto3Storage
     
@@ -263,7 +263,7 @@ production. In order to setup `Postgress` in Heroku you should:
     * Access your app and go to `Resources Tab` and look for `Heroku Postgres` in `add-ons`
     * You need to setup your `settings.py` accordingly. In this case:
     
-    ```
+    ```python
     if "DATABASE_URL" in os.environ:
     DATABASES = {
         'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
