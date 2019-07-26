@@ -80,6 +80,7 @@ Python is a programming language that lets you work quickly and integrate system
 [Django](http://flask.pocoo.org/) - Python Framework
 
 ### Packages and modules
+[Pillow](https://pypi.org/project/Pillow/) - Imaging Library for Python
 
 [Stripe](https://stripe.com/ie) - Used to securely process online payments
 
@@ -257,7 +258,30 @@ was designed to help us with this. Install it with this command:
 
 ## Install Locally
 
+### Prerequisites
+* An IDE. I used [Pycharm](https://www.jetbrains.com/pycharm/) but any other IDE will work fine
+* You should also have installed the following:
+    * PIP
+    * Python 3. I also used [Pyenv](https://github.com/pyenv/pyenv) for Python versioning
+    * Django. The version I used is 1.11
+    * Git
+* CD to the directory of your choice on your local machine and clone the repository from the terminal:
+    `git clone https://github.com/irinanita/issue-tracker.git`    
+    **OR** You can save a copy of the github repository located  [here](https://github.com/irinanita/issue-tracker)
+     by clicking the `download zip` button at the top of the page and extracting the zip file to your chosen folder.
+* CD to the directory were you are planning to run the project. You need to create a virtual environment. I used
+[Virtualenv](https://virtualenv.pypa.io/en/latest/):
+    * `pip3 install virtualenv`
+    > Note that you might have `pip` in the command
+    * `virtualenv venv` where `venv` is a name of your choice for the directory where the virtual environment will be 
+    created
+* Install all the requirements `pip install -r requirements.txt`
+* Create a file named `env.py` were you will store all the environmental variables
+* Run project `python3 manage.py runserver localhost:PORT`. Remember to add your `HOST` to the `ALLOWED_HOSTS` in
+`settimgs.py`
 
+> Ensure that env.py is also added to .gitignore as you don't want this information to be public 
+    
 ## Credits
 
 > This Project has solely educational purpose
