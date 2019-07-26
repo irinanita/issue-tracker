@@ -76,6 +76,7 @@ href
 
 [Python](https://www.python.org/) - Used throughout this project for the whole logic.
 Python is a programming language that lets you work quickly and integrate systems more effectively
+
 [Django](http://flask.pocoo.org/) - Python Framework
 
 ### Packages and modules
@@ -138,21 +139,102 @@ Ensure that all the case scenarios bellow trigger an error alert
 Git is used for version control.  Commits made at any significant change
 
 ## Deployment
-This Project was deployed with Heroku in the following way:
-* Create Heroku account
-* Login into Heroku from console `heroku login`
-* Create a new empty App on Heroku as none was created before `heroku create` 
-* Rename App `heroku apps: rename issue-tracker`
-Run this command from App's Root. The empty Heroku Git repository is automatically set as a remote for your local repository.
-Check `git remote -v`
-* Create a `Procfile` (instruction to Heroku as which file should be used as an entry point for our App)
-The `Procfile` must be in your app’s root directory `echo web python app.py > Procfile`
-* Create a requirements.txt file `sudo pip3 freeze --local > requirements.txt`
-* To deploy `git push heroku master`
-* Set the `IP`,`PORT`, `SECRET_KEY` and any other environment variables in Heroku Account Settings
+
+#### Prerequisites
+* Heroku account. If you don't have one, go [here](https://signup.heroku.com/) and create it
+* Install [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli)
+
+#### Deploying
+* Create a Heroku application for the current project: 
+    * You can create one from `Heroku CLI`. More info [here](https://devcenter.heroku.com/articles/creating-apps)
+    * Or you can do it directly from your `Heroku Account`
+* Add all your environmental variables to `configuration variables` in Heroku. You can access those form your
+`App's Dashboard` in `Settings`
+* Create a `requirements.txt` file `pip freeze > requirements.txt` it could also be 
+`pip3 freeze > requirements.txt` depending on the `Python` version
+* Create a `Procfile`. It serves as an instruction to Heroku as which file should be used as 
+an entry point for our Project. In our case `Procfile` content looks like this `web: gunicorn issue_tracker.wsgi:application`
+    
+> Note: The `Procfile` and `requirements.txt` must be in the project's root directory
 
 It is also possible to configure GitHub integration for a Heroku app, Heroku can automatically build and release (if the build is successful) pushes to the specified GitHub repo.
 [Read more here](https://devcenter.heroku.com/articles/github-integration)
+
+### Serving Static & Media files
+For this project static and media files are served using Amazon Web Services - S3
+
+#### Prerequisites
+
+* The Heroku CLI has been installed. More information on how to do it here [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli)
+* A Heroku application has been created for the current project;
+> Note: If you followed the Deployment step described above this requisites should be already met
+* An AWS S3 bucket has been created. In order to do this:
+    * Create an [AWS Account](https://aws.amazon.com/premiumsupport/knowledge-center/create-and-activate-aws-account/)
+    * Create a [S3 bucket](https://docs.aws.amazon.com/AmazonS3/latest/gsg/CreatingABucket.html)
+* You also need to install two Python packages: [Django Storages](https://django-storages.readthedocs.io/en/latest/) 
+and [Boto3](https://pypi.org/project/boto3/). 
+
+#### Setup in Heroku
+
+* Add AWS credential as configuration variables in Heroku. You need to set up the following variables: 
+`AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`
+* Add `storages` to `INSTALLED_APPS` in `settings.py`:
+   ``` 
+   INSTALLED_APPS = (
+      ...,
+      'storages',
+     )
+     ```
+
+* If you want, this is optional, add this to your common settings:
+    ```
+    AWS_S3_OBJECT_PARAMETERS = {
+        'Expires': 'Thu, 31 Dec 2099 20:00:00 GMT',
+        'CacheControl': 'max-age=94608000'
+    }
+
+    ```
+    This will tell boto3 that when it uploads files to S3, it should set properties on them so that when S3 serves them,
+    it'll include some HTTP headers in the response. 
+    Those HTTP headers, in turn, will tell browsers that they can cache these files for a very long time.
+
+* Add this code to your settings, changing the first four values accordingly:
+
+    ```
+    AWS_STORAGE_BUCKET_NAME = 'BUCKET_NAME'
+    AWS_S3_REGION_NAME = 'REGION_NAME'  # e.g. us-east-2
+    AWS_ACCESS_KEY_ID = 'xxxxxxxxxxxxxxxxxxxx'
+    AWS_SECRET_ACCESS_KEY = 'yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy'
+    
+    # Tell django-storages the domain to use to refer to static files.
+    AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+    
+    STATICFILES_LOCATION = 'static'
+    STATICFILES_STORAGE = 'customstorages.StaticStorage'
+    
+    MEDIAFILES_LOCATION = 'media'
+    DEFAULT_FILE_STORAGE = 'customstorages.MediaStorage'
+    
+    ```
+    Add `customstorages.py` in the project's root directory with the following code: 
+   
+    ```
+    from django.conf import settings
+    from storages.backends.s3boto3 import S3Boto3Storage
+    
+    # Tell the staticfiles app to use S3Boto3 storage when writing the collected static files (when
+    # you run `collectstatic`).
+    
+    class StaticStorage(S3Boto3Storage):
+        location = settings.STATICFILES_LOCATION
+
+    class MediaStorage(S3Boto3Storage):
+        location = settings.MEDIAFILES_LOCATION
+
+    ```
+*  Now upload your static files to S3 using `collectstatic` command:
+`python manage.py collectstatic`
+
 
 ## Install Locally
 
