@@ -104,10 +104,10 @@ Python is a programming language that lets you work quickly and integrate system
 
 ## Database
 
-SQL Database that comes with Django for the development environment and Postgress in deployment. 
+`SQLite3` database, that comes with Django, was used in development environment and ` Heroku Postgres` in deployment.
+More detailed information is provided in the *Deploying - Database Setup* section of this file 
 
-[Database Schema](https://dbdiagram.io/d/5ced18341f6a891a6a657c0a) - cloud database service for MongoDB databases
-
+[Database Schema](https://dbdiagram.io/d/5ced18341f6a891a6a657c0a) 
 
 
 ## Testing
@@ -141,11 +141,11 @@ Git is used for version control.  Commits made at any significant change
 
 ## Deployment
 
-#### Prerequisites
+### Prerequisites
 * Heroku account. If you don't have one, go [here](https://signup.heroku.com/) and create it
 * Install [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli)
 
-#### Deploying
+### Deploying
 * Create a Heroku application for the current project: 
     * You can create one from `Heroku CLI`. More info [here](https://devcenter.heroku.com/articles/creating-apps)
     * Or you can do it directly from your `Heroku Account`
@@ -161,14 +161,14 @@ an entry point for our Project. In our case `Procfile` content looks like this `
 It is also possible to configure GitHub integration for a Heroku app, Heroku can automatically build and release (if the build is successful) pushes to the specified GitHub repo.
 [Read more here](https://devcenter.heroku.com/articles/github-integration)
 
-### Serving Static & Media files
+#### Serving Static & Media files
 For this project static and media files are served using Amazon Web Services - S3. 
 
 > Why? If we only had to serve static files for our project, using `Whitenoise` would have serve our purpose. **BUT**
 there is an issue when it comes to serving **MEDIA FILES**, Heroku dynos have limited life span, and when they die and 
 get replaced, the files within them are lost.
 
-#### Prerequisites
+##### Prerequisites
 
 * The Heroku CLI . More information on how to do it here [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli)
 * A Heroku application for the current project;
@@ -201,10 +201,12 @@ was designed to help us with this. Install it with this command:
     * Create an [AWS Account](https://aws.amazon.com/premiumsupport/knowledge-center/create-and-activate-aws-account/)
     * Create a [S3 bucket](https://docs.aws.amazon.com/AmazonS3/latest/gsg/CreatingABucket.html)
 
-#### Setup in Heroku
+##### Setup in Heroku
 
 * Add AWS credential as configuration variables in Heroku. You need to set up the following variables: 
 `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`
+
+##### Settings.py
 
 * If you want, this is optional, add this to your common settings:
     ```
@@ -255,6 +257,34 @@ was designed to help us with this. Install it with this command:
 *  Now upload your static files to S3 using `collectstatic` command:
 `python manage.py collectstatic`
 
+    #### Database Setup
+* You also need to setup your database. You can use `sqlite3`that comes with django for development and `Postgres` in
+production. In order to setup `Postgress` in Heroku you should:
+    * Access your app and go to `Resources Tab` and look for `Heroku Postgres` in `add-ons`
+    * You need to setup your `settings.py` accordingly. In this case:
+    
+    ```
+    if "DATABASE_URL" in os.environ:
+    DATABASES = {
+        'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
+    }
+    else:
+    print('Postgress URL not found, using sqlite instead')
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
+    }
+    ```
+> Remember to add your `database url` to Heroku `config variables` with all the other environmental variables
+
+* After linking our `Postgres` database we need to migrate everything `python3 manage.py migrate` and because this
+ database is totally new we need to create a superuser `python3 manage.py createsuperuser` from `Heroku CLI`
+ 
+* Normally you would also need to install `dj-database-url`,a package that allows us to connect to a database url,
+ and `psycopg2` but these packages should be alreay installed
+ after the `requirements.txt` installation
 
 ## Install Locally
 
