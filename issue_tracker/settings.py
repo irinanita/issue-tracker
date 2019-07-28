@@ -169,7 +169,7 @@ STATIC_URL = '/static/'
 MEDIAFILES_LOCATION = 'media'
 DEFAULT_FILE_STORAGE = 'customstorages.MediaStorage'
 
-MEDIA_ROOT = os.path.join( BASE_DIR, 'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 #Django Messages
 MESSAGE_STORAGE = "django.contrib.messages.storage.session.SessionStorage"
