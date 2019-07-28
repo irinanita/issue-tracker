@@ -12,14 +12,42 @@ considerable changes until the final version. All the features and UX ar still t
 There are two categories of users registered and not, both of them represent potential customers that may be buying the app.
 * **NOT** registered users .Will be shown only the landing page with all the details and reasons why this app may be useful to them. They will be prompted to register and try out the app.
 * **Registered** users. Will have access to all the web app's functionalities
-* Carousel displayed for both users as registered users may not have yet purchase the product this may be a reminder and a prompt why they should
+* Carousel displayed for both type of users as registered users may not have yet purchase the product this may be a reminder and a prompt why they should
 * Any action can be finalized in less than two steps
-* Feedback is given at the end of important events through Alert Messages
+* Feedback is given at the end of important events through alert messages
 * Navigation throughout the website is simple and intuitive
 * Colour palette is meant to make content easily readable and eye pleasing, providing good contrast between text and background
 
-[Wireframes](https://drive.google.com/drive/folders/1cM1__363xG0X4xwey0lbOpnczrzyhBps?usp=sharing)
+### Wireframes
+Initial wireframes are slightly different from the actual design. Some parts of the initial layout were 
+improved or modified following the final goal of ensuring a better user experience:
 
+* [Landing Page - Logged Users](https://irinas-issue-tracker.s3-eu-west-1.amazonaws.com/static/wireframes/dashboard_for_logged_users.png) :
+    From the beginning it was thought to have a unique landing page.
+    The initial design is now used to display information for logged users.
+* During development it was decided to differentiate between logged and non logged users. 
+Users that were not logged in would also have ad type cards with all the benefits and call to action on their
+ [Homepage](https://irinas-issue-tracker.s3-eu-west-1.amazonaws.com/static/wireframes/landingpage.png)      
+*[Navigation Bar](https://irinas-issue-tracker.s3-eu-west-1.amazonaws.com/static/wireframes/headers.png) : 
+This sections was planned to have a design that will differ for logged and non logged users.
+The actual design has more elements compared to the wireframe, it also displays user avatar and a cart.
+* [Registration & Authentication](https://irinas-issue-tracker.s3-eu-west-1.amazonaws.com/static/wireframes/registrationauthentication.png)
+
+    The following section are accessible only by *registered* users
+
+    * [Add Ticket](https://irinas-issue-tracker.s3-eu-west-1.amazonaws.com/static/wireframes/addticket.png) 
+    * [Ticket List](https://irinas-issue-tracker.s3-eu-west-1.amazonaws.com/static/wireframes/ticketslist.png)
+    * [Ticket Details](https://irinas-issue-tracker.s3-eu-west-1.amazonaws.com/static/wireframes/ticketdetails.png)
+    * [Checkout](https://s3.console.aws.amazon.com/s3/object/irinas-issue-tracker/static/wireframes/checkout.png?region=us-east-2&tab=overview)
+    
+There are also a number of pages that are similar to the previous those mentioned above:
+* Form for password recovery. Has similar structure to login/registration form.
+* Thank you page. A page that is loaded when a user successfully purchases the App. Contains an image with a link
+to download app. This page wasn't initially included in the design. I decided to add it to the checkout process
+in order to ensure a clear step by step experience.    
+
+
+### Colour Palette
 [Main Colour Palette](https://coolors.co/ad343e-f2af29-235046-000000-e0e0ce)
 
 ### User Stories
