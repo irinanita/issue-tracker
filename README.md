@@ -28,7 +28,7 @@ improved or modified following the final goal of ensuring a better user experien
 * During development it was decided to differentiate between logged and non logged users. 
 Users that were not logged in would also have ad type cards with all the benefits and call to action on their
  [Homepage](https://irinas-issue-tracker.s3-eu-west-1.amazonaws.com/static/wireframes/landingpage.png)      
-*[Navigation Bar](https://irinas-issue-tracker.s3-eu-west-1.amazonaws.com/static/wireframes/headers.png) : 
+* [Navigation Bar](https://irinas-issue-tracker.s3-eu-west-1.amazonaws.com/static/wireframes/headers.png) : 
 This sections was planned to have a design that will differ for logged and non logged users.
 The actual design has more elements compared to the wireframe, it also displays user avatar and a cart.
 * [Registration & Authentication](https://irinas-issue-tracker.s3-eu-west-1.amazonaws.com/static/wireframes/registrationauthentication.png)
