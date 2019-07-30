@@ -143,6 +143,7 @@ More detailed information is provided in the *Deploying - Database Setup* sectio
 Ensure that all the case scenarios bellow trigger an error alert
 
 ####  Registration Form
+Manual testing was accompanied by [automated tests](../blob/master/accounts/tests.py).
 * leave mandatory field blank
 * insert input with a non valid format
 * insert username that already exists
@@ -150,22 +151,52 @@ Ensure that all the case scenarios bellow trigger an error alert
 
 ####  Login Form
 * insert wrong username/password
+* insert username that doesn't match the password and viceversa
 
 #### Profile form
-* insert avatar that has a non supported format
+Due to the fact that all the fields in this form are optional all tests resumed to the avatar field:
+* insert avatar that has a not supported format
 * insert avatar that doesn't match size requirements
+* clear avatar and ensure that it is correctly deleted
+
+#### Add ticket form
+A series of [automated tests](blob/master/tickets/tests.py) were used to ensure that error messages appear when:
+* a required field is omitted
+* a wrong label or type is submitted. 
+In order to test this case scenario, apart from the automated test, I tried submitting a form where I have manually
+changed one of the *selected options* directly from the DOM, in the browser, and see what happens in this case.
+As expected it gave an error message. 
+* instead submitting ticket with no image is a possible scenario, so in this case no errors were expected and
+the form is considered valid as it is supposed to
+* On the other hand, when submitting the image, if it is too big it should through and error. This scenario was 
+asserted within the automated tests
+* A case scenario that includes inserting a file, that is not an image, was manually tested with a zip file, as expected
+it gave an error on form submission.
+
 
 #### Checkout
 * insert non valid card number
 * insert a past date for card expiry date
-* insert non valid cvc
+* insert non valid cvc. Interesting fact about testing the cvv (cvc) filed is that sometimes payments are
+accepted even when cvc is left blank or even when a not valid cvc is inserted. As per 
+**Stipe Documentation** [here](https://stripe.com/docs/radar/rules):
+
+> A payment can still be successful even if the CVC or postal code check fails. This is because card issuers 
+take many signals into account when making a decision whether to approve or decline a payment. In some cases, a card issuer may still approve a payment they consider legitimate even if the CVC or postal code verification check fails.
+
+And [here](https://stripe.com/docs/api/charges/create):
+
+> Also note that, depending on the card issuer, charges can succeed even when passed incorrect CVC
+and address information.
 
 ### Password recovery via mail
-[Mailtrap](https://mailtrap.io/) -  Inspect and debug your email samples before delivering them to your customers. Used to test emails used for password recovery
+
+[Mailtrap](https://mailtrap.io/) was used in order to test the process of password recovery via email link.
+It allows to inspect and debug email samples before delivering them to actual website users. 
 
 
 ## Version Control
-Git is used for version control.  Commits made at any significant change
+Git is used for version control. Commits made at any significant change
 
 ## Deployment
 
