@@ -1,8 +1,8 @@
 from django.test import TestCase
 from .forms import AddTicketForm
-
-
-# Create your tests here.
+from PIL import Image
+from io import BytesIO
+from django.core.files.uploadedfile import InMemoryUploadedFile
 
 
 class TestAddTicketForm(TestCase):
@@ -31,3 +31,33 @@ class TestAddTicketForm(TestCase):
             {'title': '', 'type': 'bug', 'label': 'design', 'description': 'test', 'image': 'i.png'})
         self.assertFalse(form.is_valid())
         self.assertEqual(form.errors['title'], [u'This field is required.'])
+
+    # This test is supposed to fail as the uploaded image exceeds the allowed size
+    def test_upload_image_too_big(self):
+        im = Image.new(mode = 'RGB', size = (3200, 200))  # create a new image using PIL
+        im_io = BytesIO()  # a BytesIO object for saving image
+        im.save(im_io, 'JPEG')  # save the image to im_io
+        im_io.seek(0)  # seek to the beginning
+
+        image = InMemoryUploadedFile(
+            im_io, None, 'random-name.jpg', 'image/jpeg', len(im_io.getvalue()), None
+        )
+        file_dict = {'image': image}
+        post_dict = {'title': 'Image TEST', 'type': 'bug', 'label': 'design', 'description': 'test'}
+        form = AddTicketForm(post_dict, file_dict)
+        self.assertFalse(form.is_valid())
+
+    # This test should pass - the uploaded image is valid
+    def test_upload_valid_image(self):
+        im = Image.new(mode = 'RGB', size = (200, 200))  # create a new image using PIL
+        im_io = BytesIO()  # a BytesIO object for saving image
+        im.save(im_io, 'JPEG')  # save the image to im_io
+        im_io.seek(0)  # seek to the beginning
+
+        image = InMemoryUploadedFile(
+            im_io, None, 'random-name.jpeg', 'image/jpeg', len(im_io.getvalue()), None
+        )
+        file_dict = {'image': image}
+        post_dict = {'title': 'Image TEST', 'type': 'bug', 'label': 'design', 'description': 'test'}
+        form = AddTicketForm(post_dict, file_dict)
+        self.assertTrue(form.is_valid())
