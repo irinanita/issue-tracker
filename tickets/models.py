@@ -33,7 +33,6 @@ class Ticket(models.Model):
     score = models.IntegerField(default = 0)
     image = models.ImageField(upload_to = "img", blank = True, null = True)
 
-    # img correspond to our img direcotry under media
 
     def __str__(self):
         return "{0} -- Type: {1} -- Status: {2} ".format(self.title, self.type, self.status)

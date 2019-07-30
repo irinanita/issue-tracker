@@ -11,15 +11,10 @@ import sweetify
 # Create your views here.
 
 def add_ticket(request):
-    '''
-    Create a view that allows us to create or edit a post
-    (if the post ID is null or not)
-    '''
-    # ticket = get_object_or_404(Ticket,pk=pk) if pk else None
+    
     if request.method == "POST":
         add_ticket_form = AddTicketForm(request.POST, request.FILES)
         if add_ticket_form.is_valid():
-
             ticket = add_ticket_form.save(commit = False)
             # commit=False tells Django that "Don't send this to database yet.
             # I have more things I want to do with it."
