@@ -31,6 +31,11 @@
                 {{ add_ticket_form.image | as_crispy_field }}
             </div>
         </div>
+        {% if add_ticket_form.errors %}
+                    <div class="alert alert-danger">
+                        {{ add_ticket_form.image.errors }}
+                    </div>
+        {% endif %}
         <button class="btn btn-success float-right mt-3" type="submit">Submit</button>
     </form>
 
