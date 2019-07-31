@@ -1,21 +1,24 @@
 > # Milestone Project for Code Institute - Full Stack Frameworks with Django Module - By Irina Nita
 ---
-This project is an Issue Tracker build with Django. As it is clear from the name this web app is an issue tracker.
-Easy to use and very efficient for team work. The web app itself is a demo version of the final product. By registering
-to the demo version users can contribute to its improvement and give it a go to see its awesome features. Then they can purchase
-this app  to make working on their own projects more efficient and clear for the entire team involved.
+This project is an Issue Tracker build with Django. 
+Easy to use and very efficient for team work. The web app itself is a demo version of the final product, the entire process
+is meant to familiarise users with app and prompt them to buy it. By registering
+to the demo version users can contribute to its improvement, by adding bug or feature related tickets while 
+learning about the product i the process. Users can purchase
+this app and use it for their own projects and make team work a more enjoyable and efficient experience for the entire
+team.
 
-> Note : This is the initial version of the Readme file while the whole project is still at the beginning, so it may be subjected to
-considerable changes until the final version. All the features and UX ar still to be implemented. 
 
 ## UX
 There are two categories of users registered and not, both of them represent potential customers that may be buying the app.
-* **NOT** registered users .Will be shown only the landing page with all the details and reasons why this app may be useful to them. They will be prompted to register and try out the app.
-* **Registered** users. Will have access to all the web app's functionalities
-* Carousel displayed for both type of users as registered users may not have yet purchase the product this may be a reminder and a prompt why they should
-* Any action can be finalized in less than two steps
+* **NOT** registered users. Are shown only the landing page with all the details and reasons why this app may be useful to 
+them. They will be prompted to register and try out the app.
+* **Registered** users. Have access to all the web app's functionalities
+* Carousel displayed for both type of users as registered users may not have yet purchase the product this may be a 
+reminder and serve as call to action
+* UX is intuitive and clear
 * Feedback is given at the end of important events through alert messages
-* Navigation throughout the website is simple and intuitive
+* Navigation throughout the website is simple
 * Colour palette is meant to make content easily readable and eye pleasing, providing good contrast between text and background
 
 ### Wireframes
@@ -33,18 +36,18 @@ This sections was planned to have a design that will differ for logged and non l
 The actual design has more elements compared to the wireframe, it also displays user avatar and a cart.
 * [Registration & Authentication](https://irinas-issue-tracker.s3-eu-west-1.amazonaws.com/static/wireframes/registrationauthentication.png)
 
-    The following section are accessible only by *registered* users
+* The following sections are accessible only to **registered** users
 
     * [Add Ticket](https://irinas-issue-tracker.s3-eu-west-1.amazonaws.com/static/wireframes/addticket.png) 
     * [Ticket List](https://irinas-issue-tracker.s3-eu-west-1.amazonaws.com/static/wireframes/ticketslist.png)
     * [Ticket Details](https://irinas-issue-tracker.s3-eu-west-1.amazonaws.com/static/wireframes/ticketdetails.png)
     * [Checkout](https://s3.console.aws.amazon.com/s3/object/irinas-issue-tracker/static/wireframes/checkout.png?region=us-east-2&tab=overview)
     
-There are also a number of pages that are similar to the previous those mentioned above:
-* Form for password recovery. Has similar structure to login/registration form.
-* Thank you page. A page that is loaded when a user successfully purchases the App. Contains an image with a link
-to download app. This page wasn't initially included in the design. I decided to add it to the checkout process
-in order to ensure a clear step by step experience.    
+*There are also a number of pages that are similar to those mentioned above:
+    * Form for password recovery. Has similar structure to login/registration form.
+    * Thank you page. A page that is loaded when a user successfully purchases the App. Contains an image with a link
+    to download the app. This page wasn't initially included in the design. I decided to add it to the checkout process
+    in order to ensure a clear flow.    
 
 
 ### Colour Palette
@@ -52,7 +55,8 @@ in order to ensure a clear step by step experience.
 
 ### User Stories
 
-1.  I am *NOT* registered yet and  I am looking for an issue tracker for my new project. I would like more information and a product that better suits my project's needs.
+1.  I am *NOT* registered yet and  I am looking for an issue tracker for my new project. 
+I would like more information and a product that better suits my project's needs.
 2.  I am a registered user and want to test the product:
 * I would like to report bugs I come across wheter functional or design related
 * I would also like to request features by opening a ticket or by voting an existing one
@@ -73,7 +77,8 @@ in order to ensure a clear step by step experience.
 8. Voting for features requires a small payment
 9.  Checkout
 10. Registered users can buy the app after they have tried the demo version
-11. Password recovery. Users can recover their password, they receive an email with a link. following the link they can insert a new password
+11. Password recovery. Users can recover their password, they receive an email with a link. 
+Following the link they can insert a new password
 
 ## Superusers/admins by accessing the admin panel
 1. Can change ticket status from opened to closed
@@ -81,6 +86,14 @@ in order to ensure a clear step by step experience.
 
 ### Other Possible Features and Improvements
 1. Update password
+2. Change username or email
+3. Add different packages of the app, for example a premium package could include more functionalities 
+4. Also ticket related attributes could be extended to provide more specific details and categorization options
+5. Now it is only possible to add comments related to the ticket, it could also be inerestenting to allow
+users to answer directly to a specific comment
+6. Adding an internal messaging system or a chat could also be very interesting
+7. Adding Markdown functionality to forms text areas in order to allow to format messages
+8. Provide discount code for user referrals 
 
 
 ## Technologies Used
@@ -89,7 +102,8 @@ in order to ensure a clear step by step experience.
 
 HTML, CSS - for structure and styling purposes
 
-[JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) & [jQuery](https://jquery.com/) - mostly components provided by `Bootstrap` were used,
+[JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) & [jQuery](https://jquery.com/) - 
+mostly components provided by `Bootstrap` were used,
 in order to create interaction like alerts that could be closed, burger button that appears on
 screen resize. Navigation links that highlight when a user is at the page that matches
 href
@@ -133,9 +147,10 @@ Python is a programming language that lets you work quickly and integrate system
 ## Database
 
 `SQLite3` database, that comes with Django, was used in development environment and ` Heroku Postgres` in deployment.
-More detailed information is provided in the *Deploying - Database Setup* section of this file 
+More detailed information is provided in the [Deploying - Database Setup](#Database Setup) section of this file 
 
-[Database Schema](https://dbdiagram.io/d/5ced18341f6a891a6a657c0a) 
+[Database Schema](https://dbdiagram.io/d/5ced18341f6a891a6a657c0a) - this is a representation of the initial Database 
+Schema. Current version could be slightlty different
 
 
 ## Testing
