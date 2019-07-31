@@ -43,7 +43,7 @@ The actual design has more elements compared to the wireframe, it also displays 
     * [Ticket Details](https://irinas-issue-tracker.s3-eu-west-1.amazonaws.com/static/wireframes/ticketdetails.png)
     * [Checkout](https://s3.console.aws.amazon.com/s3/object/irinas-issue-tracker/static/wireframes/checkout.png?region=us-east-2&tab=overview)
     
-*There are also a number of pages that are similar to those mentioned above:
+* There are also a number of pages that are similar to those mentioned above:
     * Form for password recovery. Has similar structure to login/registration form.
     * Thank you page. A page that is loaded when a user successfully purchases the App. Contains an image with a link
     to download the app. This page wasn't initially included in the design. I decided to add it to the checkout process
