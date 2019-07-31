@@ -205,6 +205,12 @@ And [here](https://stripe.com/docs/api/charges/create):
 > Also note that, depending on the card issuer, charges can succeed even when passed incorrect CVC
 and address information.
 
+### HTML & CSS validation
+* HTML code validation made with [W3C Schools HTML Validator](https://validator.w3.org).
+Main issues revealed were related to *empty elements* related to block headings created in the base template that
+weren't actually used in some pages due to the fact that the design didn't require it. Hence the occasional empty tags.
+* CSS validated using [W3C Jigsaw Validator](https://jigsaw.w3.org/)
+
 ### Password recovery via mail
 
 [Mailtrap](https://mailtrap.io/) was used in order to test the process of password recovery via email link.
