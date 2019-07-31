@@ -353,8 +353,23 @@ production. In order to setup `Postgress` in Heroku you should:
     ```
 > Remember to add your `database url` to Heroku `config variables` with all the other environmental variables
 
-* After linking our `Postgres` database we need to migrate everything `python3 manage.py migrate` and because this
- database is totally new we need to create a superuser `python3 manage.py createsuperuser` from `Heroku CLI`
+* After linking our `Postgres` database we need to migrate everything
+ 
+* Log to `Heroku CLI`. I used the following command from my console:
+`login Heroku` and then follow the instructions provided
+
+* You should have already made all the migrations locally and in order to have this migrations in `Heroku`, 
+from console run:
+
+`heroku run python3 manage.py migrate --app your-app-name`
+ 
+ * You will also need to create a superuser:
+ 
+ ` heroku python3 manage.py createsuperuser --app your-app-name`
+ 
+ > Remember that for any changes you make to your modals, if run the `makemigrations` command locally it is 
+ mandatory to commit your migration files and to deploy the new versions and then run `heroku run python3 manage.py migrate --app your-app-name`
+ in order to have your migrations made in development environment as well
  
 * Normally you would also need to install `dj-database-url`,a package that allows us to connect to a database url,
  and `psycopg2` but these packages should be alreay installed
