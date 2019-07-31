@@ -23,15 +23,15 @@ class Ticket(models.Model):
     )
 
     title = models.CharField(max_length = 70)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete = models.CASCADE, null = True)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete = models.CASCADE)
     description = models.TextField()
     type = models.CharField(max_length = 7, choices = TYPE_CHOICES)
     label = models.CharField(max_length = 13, choices = LABEL_CHOICES)
-    status = models.CharField(max_length = 20, choices = STATUS_CHOICES, default = "opened", null = True)
+    status = models.CharField(max_length = 20, choices = STATUS_CHOICES, default = "opened")
     creation_date = models.DateTimeField(auto_now_add = True)
     # auto_now and auto_now_add imply the field is not user-editable and must always get set to this value
     score = models.IntegerField(default = 0)
-    image = models.ImageField(upload_to = "img", blank = True, null = True)
+    image = models.ImageField(upload_to = "img", blank = True)
 
 
     def __str__(self):
