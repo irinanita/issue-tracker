@@ -55,13 +55,14 @@ The actual design has more elements compared to the wireframe, it also displays 
 
 ### User Stories
 
-1.  I am *NOT* registered yet and  I am looking for an issue tracker for my new project. 
-I would like more information and a product that better suits my project's needs.
-2.  I am a registered user and want to test the product:
-* I would like to report bugs I come across wheter functional or design related
+1.  As a *NOT* registered user yet I am looking for an issue tracker for my new project and 
+would like to get more information or event try out, before purchasing, a product that suits my project's needs.
+2.  As a registered user I would like to test the product in every detail that may be of interest:
+* I would like to report bugs as I come across them, functional or design related
 * I would also like to request features by opening a ticket or by voting an existing one
 * I would like to know what feature will be implemented next and what bugs the dev team is currently working on
-3.  I am a registered user and I have been using this app for a while now and decided to buy it to use it for my project
+3. As  a registered user and that has been using this app for a while I may be interested in buying it for my own
+project, so having call to action elements will come in handy
  
 
 ## Features
@@ -159,40 +160,40 @@ Ensure that all the case scenarios bellow trigger an error alert
 
 ####  Registration Form
 Manual testing was accompanied by [automated tests](../blob/master/accounts/tests.py).
-* leave mandatory field blank
-* insert input with a non valid format
-* insert username that already exists
-* insert not matching passwords
+* Leave mandatory field blank
+* Insert input with a non valid format
+* Insert username that already exists
+* Insert not matching passwords
 
 ####  Login Form
-* insert wrong username/password
-* insert username that doesn't match the password and viceversa
+* Insert wrong username/password
+* Insert username that doesn't match the password and viceversa
 
 #### Profile form
 Due to the fact that all the fields in this form are optional all tests resumed to the avatar field:
-* insert avatar that has a not supported format
-* insert avatar that doesn't match size requirements
-* clear avatar and ensure that it is correctly deleted
+* Insert avatar that has a not supported format
+* Insert avatar that doesn't match size requirements
+* Clear avatar and ensure that it is correctly deleted
 
 #### Add ticket form
 A series of [automated tests](blob/master/tickets/tests.py) were used to ensure that error messages appear when:
-* a required field is omitted
-* a wrong label or type is submitted. 
+* A required field is omitted
+* A wrong label or type is submitted. 
 In order to test this case scenario, apart from the automated test, I tried submitting a form where I have manually
 changed one of the *selected options* directly from the DOM, in the browser, and see what happens in this case.
 As expected it gave an error message. 
-* instead submitting ticket with no image is a possible scenario, so in this case no errors were expected and
+* Submitting ticket with no image, on the other hand, is a possible scenario, so in this case no errors were expected and
 the form is considered valid as it is supposed to
-* On the other hand, when submitting the image, if it is too big it should through and error. This scenario was 
+* However, when submitting the image, that is too big it should through and error. This scenario was 
 asserted within the automated tests
 * A case scenario that includes inserting a file, that is not an image, was manually tested with a zip file, as expected
 it gave an error on form submission.
 
 
 #### Checkout
-* insert non valid card number
-* insert a past date for card expiry date
-* insert non valid cvc. Interesting fact about testing the cvv (cvc) filed is that sometimes payments are
+* Insert non valid card number
+* Insert a past date for card expiry date
+* Insert non valid cvc. Interesting fact about testing the cvv (cvc) filed is that sometimes payments are
 accepted even when cvc is left blank or even when a not valid cvc is inserted. As per 
 **Stipe Documentation** [here](https://stripe.com/docs/radar/rules):
 
@@ -209,10 +210,6 @@ and address information.
 [Mailtrap](https://mailtrap.io/) was used in order to test the process of password recovery via email link.
 It allows to inspect and debug email samples before delivering them to actual website users. 
 
-
-## Version Control
-Git is used for version control. Commits made at any significant change
-
 ## Deployment
 
 ### Prerequisites
@@ -225,8 +222,15 @@ Git is used for version control. Commits made at any significant change
     * Or you can do it directly from your `Heroku Account`
 * Add all your environmental variables to `configuration variables` in Heroku. You can access those form your
 `App's Dashboard` in `Settings`
-* Create a `requirements.txt` file `pip freeze > requirements.txt` it could also be 
-`pip3 freeze > requirements.txt` depending on the `Python` version
+* Create a `requirements.txt` file 
+    ```
+    pip freeze > requirements.txt
+    ``` 
+    Depending on `Python` versionThe command could also be:  
+    ```
+    pip3 freeze > requirements.txt
+    ``` 
+
 * Create a `Procfile`. It serves as an instruction to Heroku as which file should be used as 
 an entry point for our Project. In our case `Procfile` content looks like this `web: gunicorn issue_tracker.wsgi:application`
     
@@ -249,7 +253,9 @@ get replaced, the files within them are lost.
 > Note: If you followed the Deployment step described above this requisites should be already met
 * Django does not support serving static files in production. However, [Whitenoise](https://pypi.org/project/whitenoise/) 
 was designed to help us with this. Install it with this command:
-    * `pip install whitenoise`
+    ```
+    pip install whitenoise
+    ```
     * You should also add it to the projects `MIDDLEWARE` section in `setting.py`:
     
     ```python
@@ -361,18 +367,22 @@ production. In order to setup `Postgress` in Heroku you should:
 * You should have already made all the migrations locally and in order to have this migrations in `Heroku`, 
 from console run:
 
-`heroku run python3 manage.py migrate --app your-app-name`
+    ```
+    heroku run python3 manage.py migrate --app your-app-name
+    ```
  
  * You will also need to create a superuser:
  
- ` heroku python3 manage.py createsuperuser --app your-app-name`
+    ```
+    heroku python3 manage.py createsuperuser --app your-app-name
+    ```
  
  > Remember that for any changes you make to your modals, if run the `makemigrations` command locally it is 
  mandatory to commit your migration files and to deploy the new versions and then run `heroku run python3 manage.py migrate --app your-app-name`
  in order to have your migrations made in development environment as well
  
 * Normally you would also need to install `dj-database-url`,a package that allows us to connect to a database url,
- and `psycopg2` but these packages should be alreay installed
+ and `psycopg2` but these packages should be already installed
  after the `requirements.txt` installation
 
 ## Install Locally
@@ -385,19 +395,29 @@ from console run:
     * Django. The version I used is 1.11
     * Git
 * CD to the directory of your choice on your local machine and clone the repository from the terminal:
-    `git clone https://github.com/irinanita/issue-tracker.git`    
+    ```
+    git clone https://github.com/irinanita/issue-tracker.git
+    ```    
     **OR** You can save a copy of the github repository located  [here](https://github.com/irinanita/issue-tracker)
      by clicking the `download zip` button at the top of the page and extracting the zip file to your chosen folder.
 * CD to the directory were you are planning to run the project. You need to create a virtual environment. I used
 [Virtualenv](https://virtualenv.pypa.io/en/latest/):
-    * `pip3 install virtualenv`
+    ```
+    pip3 install virtualenv
+    ```
     > Note that you might have `pip` in the command
     * `virtualenv venv` where `venv` is a name of your choice for the directory where the virtual environment will be 
     created
-* Install all the requirements `pip install -r requirements.txt`
+* Install all the requirements:
+    ```
+    pip install -r requirements.txt
+    ```
 * Create a file named `env.py` were you will store all the environmental variables
-* Run project `python3 manage.py runserver localhost:PORT`. Remember to add your `HOST` to the `ALLOWED_HOSTS` in
-`settimgs.py`
+* Run project:
+    ```
+    python3 manage.py runserver localhost:PORT
+    ```
+  Remember to add your `HOST` to the `ALLOWED_HOSTS` in `settimgs.py`
 
 > Ensure that env.py is also added to .gitignore as you don't want this information to be public 
     
