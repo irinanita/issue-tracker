@@ -33,7 +33,7 @@ def add_ticket(request):
 def ticketslist(request):
     tickets_list = Ticket.objects.all()
 
-    paginator = Paginator(tickets_list, 2)
+    paginator = Paginator(tickets_list, 4)
     page = request.GET.get('page')
 
     try:
