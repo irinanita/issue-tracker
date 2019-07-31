@@ -281,26 +281,9 @@ was designed to help us with this. Install it with this command:
     * Create an [AWS Account](https://aws.amazon.com/premiumsupport/knowledge-center/create-and-activate-aws-account/)
     * Create a [S3 bucket](https://docs.aws.amazon.com/AmazonS3/latest/gsg/CreatingABucket.html)
 
-##### Setup in Heroku
+##### Setup
 
-* Add AWS credential as configuration variables in Heroku. You need to set up the following variables: 
-`AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`
-
-##### Settings.py
-
-* If you want, this is optional, add this to your common settings:
-    ```python
-    AWS_S3_OBJECT_PARAMETERS = {
-        'Expires': 'Thu, 31 Dec 2099 20:00:00 GMT',
-        'CacheControl': 'max-age=94608000'
-    }
-
-    ```
-    This will tell boto3 that when it uploads files to S3, it should set properties on them so that when S3 serves them,
-    it'll include some HTTP headers in the response. 
-    Those HTTP headers, in turn, will tell browsers that they can cache these files for a very long time.
-
-* Add this code to your settings, changing the first four values accordingly:
+* Add this code to your `settings.py`, changing the first four values accordingly:
 
     ```python
     AWS_STORAGE_BUCKET_NAME = 'BUCKET_NAME'
@@ -334,8 +317,26 @@ was designed to help us with this. Install it with this command:
         location = settings.MEDIAFILES_LOCATION
 
     ```
+
+>  Remember to add AWS credentials `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` as configuration variables in Heroku   
+    
+* This step is *optional*, add this to your common settings:
+    ```python
+    AWS_S3_OBJECT_PARAMETERS = {
+        'Expires': 'Thu, 31 Dec 2099 20:00:00 GMT',
+        'CacheControl': 'max-age=94608000'
+    }
+
+    ```
+    This will tell boto3 that when it uploads files to S3, it should set properties on them so that when S3 serves them,
+    it'll include some HTTP headers in the response. 
+    Those HTTP headers, in turn, will tell browsers that they can cache these files for a very long time.    
+    
+    
 *  Now upload your static files to S3 using `collectstatic` command:
-`python manage.py collectstatic`
+    ```
+    python manage.py collectstatic
+    ```
 
     #### Database Setup
 * You also need to setup your database. You can use `sqlite3`that comes with django for development and `Postgres` in
@@ -359,12 +360,15 @@ production. In order to setup `Postgress` in Heroku you should:
     ```
 > Remember to add your `database url` to Heroku `config variables` with all the other environmental variables
 
-* After linking our `Postgres` database we need to migrate everything
+* After linking the `Postgres` database we need to migrate everything
  
 * Log to `Heroku CLI`. I used the following command from my console:
-`login Heroku` and then follow the instructions provided
+    ```
+    login Heroku
+    ```
+    and follow the instructions that appear in console
 
-* You should have already made all the migrations locally and in order to have this migrations in `Heroku`, 
+* You should have already made all the migrations locally at this point. In order to have this migrations in `Heroku`, 
 from console run:
 
     ```
