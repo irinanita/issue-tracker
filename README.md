@@ -147,7 +147,7 @@ Python is a programming language that lets you work quickly and integrate system
 ## Database
 
 `SQLite3` database, that comes with Django, was used in development environment and ` Heroku Postgres` in deployment.
-More detailed information is provided in the [Deploying - Database Setup](#Database Setup) section of this file 
+More detailed information is provided in the [Deploying - Database Setup](#Database-Setup) section of this file 
 
 [Database Schema](https://dbdiagram.io/d/5ced18341f6a891a6a657c0a) - this is a representation of the initial Database 
 Schema. Current version could be slightlty different
