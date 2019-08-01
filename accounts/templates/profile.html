@@ -5,17 +5,6 @@
 {% load initialavatar %}
 
 {% block content %}
-
-    {% if messages %}
-        {% for message in messages %}
-
-            <div class="alert alert-secondary mt-3" role="alert">
-                {{ message }}
-            </div>
-
-        {% endfor %}
-    {% endif %}
-
     <div class="row mt-3">
         <div class="col-xs-12 col-md-4">
             <div class="profile-picture">
@@ -25,11 +14,11 @@
                 {% else %}
                     {% get_initial_avatar user 100 'circle' %}
                 {% endif %}
-                <div class="mt-4">
+                <div class="mt-4 text-center">
                     <p>You are logged in as {{ user.username }}</p>
                     <p>Last login : {{ user.last_login }}</p>
                     <p>Date joined : {{ user.date_joined }}</p>
-                    <p>Email {{ user.email }}</p>
+                    <p>Email: {{ user.email }}</p>
                 </div>
             </div>
         </div>
