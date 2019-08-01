@@ -188,6 +188,15 @@ asserted within the automated tests
 * A case scenario that includes inserting a file, that is not an image, was manually tested with a zip file, as expected
 it gave an error on form submission.
 
+#### Search form
+* Testing with different combinations of search parameters
+* Searching for non existing keywords
+* Applying different sort options
+* Ensure that when search has zero results the search parameters are cleaned and user is informed
+Most challenging was making search work correctly when switching between *all-bug-features* tabs. The
+intent was to preserve the parameters while switching between tabs
+* Test that the reset works as expected - cleaning all parameters
+  
 
 #### Checkout
 * Insert non valid card number
