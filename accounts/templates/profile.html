@@ -26,6 +26,9 @@
             <form method="POST" class="mr-auto ml-auto col-xs-12 col-lg-8 clearfix" enctype="multipart/form-data">
                 {% csrf_token %}
                 {{ profile_form| crispy }}
+                <div class="row">
+                    <a href="{% url 'delete_avatar' %}" class="ml-4 text-danger"><i class="fas fa-trash"> Delete Avatar</i></a>
+                </div>
                 {% if profile_form.errors %}
                     <div class="alert alert-danger">
                         {{ profile_form.avatar.errors }}
@@ -35,4 +38,5 @@
             </form>
         </div>
     </div>
+
 {% endblock %}

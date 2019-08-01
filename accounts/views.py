@@ -77,3 +77,9 @@ def user_profile(request):
         profile_form = ExtendedProfileForm(instance = user_profile)
 
     return render(request, 'profile.html', {'profile_form': profile_form, 'user_profile': user_profile})
+
+
+def delete_avatar(request):
+    UserProfile.objects.get(user = request.user).avatar.delete(save = True)
+    sweetify.success(request, 'Profile Updated', text = 'You have successfully deleted your avatar')
+    return redirect('user_profile')
