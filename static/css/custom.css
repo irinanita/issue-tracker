@@ -154,6 +154,7 @@ a:hover {
     top: 50%;
     transform: translateY(-50%);
     bottom: initial !important;
+    background-color: rgba(0,0,0,0.4);
 }
 
 .carousel-item img {
