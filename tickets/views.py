@@ -54,7 +54,6 @@ def ticket_details(request, pk):
     Or return 404 error if the post is not found
     '''
     ticket = get_object_or_404(Ticket, pk = pk) if pk else None
-    add_comment_form = AddCommentForm()
     # get all comments where the ticket foreign key matches the current ticket pk
     comments = Comment.objects.filter(ticket = pk).order_by('-creation_date')
 
