@@ -80,10 +80,9 @@ project, so having call to action elements will come in handy
 10. Registered users can buy the app after they have tried the demo version
 11. Password recovery. Users can recover their password, they receive an email with a link. 
 Following the link they can insert a new password
-
-## Superusers/admins by accessing the admin panel
-1. Can change ticket status from opened to closed
-2. Can change ticket label or type in case it's been wrongly assigned based on the description
+12. Superusers/admins by accessing the admin panel:
+    1. Can change ticket status from opened to closed
+    2. Can change ticket label or type in case it's been wrongly assigned based on the description
 
 ### Other Possible Features and Improvements
 1. Update password
@@ -238,7 +237,11 @@ It allows to inspect and debug email samples before delivering them to actual we
     ``` 
 
 * Create a `Procfile`. It serves as an instruction to Heroku as which file should be used as 
-an entry point for our Project. In our case `Procfile` content looks like this `web: gunicorn issue_tracker.wsgi:application`
+an entry point for our Project. In our case `Procfile` content looks like this :
+
+    ```
+    web: gunicorn issue_tracker.wsgi:application
+    ```
     
 > Note: The `Procfile` and `requirements.txt` must be in the project's root directory
 
