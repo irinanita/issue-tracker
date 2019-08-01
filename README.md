@@ -233,6 +233,15 @@ As a result it was decided to render it as a *file upload field*
 [Mailtrap](https://mailtrap.io/) was used in order to test the process of password recovery via email link.
 It allows to inspect and debug email samples before delivering them to actual website users. 
 
+#### Known bugs
+* It is currently impossible to setup smtp base on an actual gmail account, as this app is considered no secure, so password
+recovery works only if I am logged in real time into my account. Hence the first step of password recovery is followed
+by an error.
+
+However, it works perfectly fine with [Mailtrap](https://mailtrap.io/) in development or if configured in production as
+well, only in this case no mail is actually sent to the address but to Mailtrap.
+
+
 ## Deployment
 
 ### Prerequisites
