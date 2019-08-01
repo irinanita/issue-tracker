@@ -210,6 +210,15 @@ Main issues revealed were related to *empty elements* related to block headings 
 weren't actually used in some pages due to the fact that the design didn't require it. Hence the occasional empty tags.
 * CSS validated using [W3C Jigsaw Validator](https://jigsaw.w3.org/)
 
+### Layout testing on different screen sizes
+* Tested with Chrome Dev Tools for different devices 
+* Of particular interest was testing the form in the Profile section. Initially the
+*avatar upload** also displayed the path to the current image and an option to delete
+it by ticking the checkbox (Django's default rendering of *image fields* in forms), but
+I think the layout wasn't intuitive and UX wasn't working well especially on small devices. 
+As a result it was decided to render it as a *file upload field*
+
+
 ### Password recovery via mail
 
 [Mailtrap](https://mailtrap.io/) was used in order to test the process of password recovery via email link.
