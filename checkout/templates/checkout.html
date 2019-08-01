@@ -22,6 +22,7 @@
             <th scope="col">Ticket Title</th>
             <th scope="col">Type</th>
             <th scope="col">Label</th>
+            <th scope="col">Total</th>
         </tr>
         </thead>
         <tbody>
@@ -31,13 +32,15 @@
                 <td>{{ item.ticket.title }}</td>
                 <td>{{ item.ticket.type }}</td>
                 <td>{{ item.ticket.label }}</td>
+                <td>15 EUR</td>
             </tr>
         {% endfor %}
+        <tr>
+            <td colspan="4"></td>
+            <td><strong>{{ total_value }} EUR</strong></td>
+        </tr>
         </tbody>
     </table>
-    <div class="row">
-        <span class="mr-2 ml-auto">Total</span><span>{{ total_value }}</span>
-    </div>
     <div class="alert alert-danger mt-3" role="alert " id="credit-card-errors" style="display: none;">
         <div class="errorList" id="stripe-error-message"></div>
     </div>
