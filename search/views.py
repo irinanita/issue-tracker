@@ -48,7 +48,7 @@ def search(request):
     else:
         return redirect('ticketslist')
 
-    paginator = Paginator(query_set, 2)
+    paginator = Paginator(query_set, 4)
     page = request.GET.get('page')
     try:
         tickets = paginator.page(page)
