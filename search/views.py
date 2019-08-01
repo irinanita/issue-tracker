@@ -37,7 +37,7 @@ def search(request):
         if is_valid_query_param(query_label):
             query_set = query_set.filter(label__icontains = query_label)
         if query_set.count() == 0:
-            filter ={}
+            filter = {}
         if is_valid_query_param(query_sort):
             if query_sort == "recently added on top":
                 query_set = query_set.order_by('-creation_date')

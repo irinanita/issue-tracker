@@ -1,4 +1,4 @@
-from django.shortcuts import render, reverse, redirect, get_object_or_404
+from django.shortcuts import redirect, get_object_or_404
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from .models import UserTicketVote

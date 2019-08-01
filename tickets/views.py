@@ -18,11 +18,9 @@ def add_ticket(request):
             ticket = add_ticket_form.save(commit = False)
             # commit=False tells Django that "Don't send this to database yet.
             # I have more things I want to do with it."
-
             ticket.user = request.user  # Set the user object here
             ticket.save()  # Now you can send it to DB
             sweetify.success(request, 'Ticket Added', text = 'Your ticket was successfully added to the list')
-
             return redirect('ticketslist')
     else:
         add_ticket_form = AddTicketForm()

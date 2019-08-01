@@ -1,6 +1,5 @@
 from django.conf.urls import url
 from django.core.urlresolvers import reverse_lazy
-# download all the views that are provided by Django by default
 from django.contrib.auth.views import password_reset, password_reset_done, password_reset_confirm, password_reset_complete
 
 urlpatterns = [
