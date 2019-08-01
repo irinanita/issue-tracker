@@ -236,10 +236,14 @@ It allows to inspect and debug email samples before delivering them to actual we
 #### Known bugs
 * It is currently impossible to setup smtp base on an actual gmail account, as this app is considered no secure, so password
 recovery works only if I am logged in real time into my account. Hence the first step of password recovery is followed
-by an error.
+by a server error related to **authentication failure**.
 
-However, it works perfectly fine with [Mailtrap](https://mailtrap.io/) in development or if configured in production as
+However, it works perfectly fine with  in development or if configured in production as
 well, only in this case no mail is actually sent to the address but to Mailtrap.
+
+> Note : Considering the facts mentioned above I decided to have keep [Mailtrap](https://mailtrap.io/) configured in
+ productions as well. This allows to at least display the next step from the password recovery process that confirms
+ that email was sent if the address was in the app's database.
 
 
 ## Deployment
