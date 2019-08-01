@@ -58,7 +58,7 @@ a:hover {
     cursor: pointer;
 }
 
-.card-ad-buy{
+.card-ad-buy {
     -moz-transition: all 0.35s ease-in-out;
     -webkit-transition: all 0.35s ease-in-out;
     -o-transition: all 0.35s ease-in-out;
@@ -154,7 +154,7 @@ a:hover {
     top: 50%;
     transform: translateY(-50%);
     bottom: initial !important;
-    background-color: rgba(0,0,0,0.4);
+    background-color: rgba(0, 0, 0, 0.4);
 }
 
 .carousel-item img {
@@ -278,20 +278,39 @@ a.cart:hover, .fa-shopping-cart:hover {
 }
 
 /*********************PROFILE******************/
+@media only screen and (min-width: 768px) {
 
-#id_birth_date_month {
-    display: inline-block;
-    width: 40%;
+    #id_birth_date_month {
+        display: inline-block;
+        width: 40%;
+        margin-top: 0;
+    }
+
+    #id_birth_date_year {
+        display: inline-block;
+        width: 30%;
+        margin-top: 0;
+    }
+
+    #id_birth_date_day {
+        display: inline-block;
+        width: 20%;
+        margin-top: 0;
+    }
+
+    .fileinput.fileUpload {
+        border: none;
+    }
 }
 
-#id_birth_date_year {
-    display: inline-block;
-    width: 30%;
-}
-
+#id_birth_date_month,
+#id_birth_date_year,
 #id_birth_date_day {
-    display: inline-block;
-    width: 20%;
+    margin-top: 10px;
+}
+
+.fileinput.fileUpload {
+    border: none;
 }
 
 .profile-picture .initial-avatar {
@@ -300,14 +319,20 @@ a.cart:hover, .fa-shopping-cart:hover {
     margin-right: auto;
 }
 
-/*****Password Reset******/
+.fileinput.fileUpload {
+    overflow: hidden;
+    margin: 10px;
+    width: 100%;
+    border: 1px solid grey;
+    border-radius: 0.4rem;
+}
 
-.fa-icon__big{
+/*****Password Reset******/
+.fa-icon__big {
     font-size: 82px;
 }
 
 /****Alerts****/
-
 .swal2-confirm {
     background-color: #235046 !important;
 }
@@ -328,7 +353,6 @@ a.cart:hover, .fa-shopping-cart:hover {
 }
 
 /***********Comment Section**********/
-
 .img-container {
     overflow: hidden;
 }
@@ -353,7 +377,6 @@ a.cart:hover, .fa-shopping-cart:hover {
 }
 
 /***********Form**********/
-
 form {
     border: 1px solid #00000014;
     border-radius: 1rem;

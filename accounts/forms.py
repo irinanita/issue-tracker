@@ -6,6 +6,7 @@ from .models import UserProfile
 from django.core.files.images import get_image_dimensions
 
 
+
 class UserRegistrationForm(UserCreationForm):
     '''Form used to register a new user'''
     username = forms.CharField(label = 'Username', max_length = 100)
@@ -45,6 +46,9 @@ class ExtendedProfileForm(forms.ModelForm):
     YEARS = [x for x in range(1930, 2019)]
     birth_date = forms.DateField(widget = forms.SelectDateWidget(years = YEARS), initial = "1970-06-21",
                                  required = False)
+    avatar = forms.ImageField(label = 'Avatar', required = False,
+                              error_messages = {'invalid': "Image files only"},
+                              widget = forms.FileInput)
 
     def clean_avatar(self):
         avatar = self.cleaned_data['avatar']
