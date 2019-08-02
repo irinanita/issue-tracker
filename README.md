@@ -203,7 +203,7 @@ intent was to preserve the parameters while switching between tabs
 * Insert a past date for card expiry date
 * Insert non valid cvc. Interesting fact about testing the cvv (cvc) filed is that sometimes payments are
 accepted even when cvc is left blank or even when a not valid cvc is inserted. As per 
-**Stipe Documentation** [here](https://stripe.com/docs/radar/rules):
+**Stripe Documentation** [here](https://stripe.com/docs/radar/rules):
 
 > A payment can still be successful even if the CVC or postal code check fails. This is because card issuers 
 take many signals into account when making a decision whether to approve or decline a payment. In some cases, a card issuer may still approve a payment they consider legitimate even if the CVC or postal code verification check fails.
@@ -219,6 +219,12 @@ Main issues revealed were related to *empty elements* related to block headings 
 weren't actually used in some pages due to the fact that the design didn't require it. Hence the occasional empty tags.
 * CSS validated using [W3C Jigsaw Validator](https://jigsaw.w3.org/)
 
+### Tested app behaviour for logged vs not logged users
+* Logged in
+* Went to a page accessible only for logged users and copied the url
+* Opened a window in *incognito mode* and pasted the link there. As expected was redirected to *login*
+* While logged inserted url for the *registration section*. As expected stayed on the same page
+
 ### Layout testing on different screen sizes
 * Tested with Chrome Dev Tools for different devices 
 * Of particular interest was testing the form in the Profile section. Initially the
@@ -229,7 +235,6 @@ As a result it was decided to render it as a *file upload field*
 
 
 ### Password recovery via mail
-
 [Mailtrap](https://mailtrap.io/) was used in order to test the process of password recovery via email link.
 It allows to inspect and debug email samples before delivering them to actual website users. 
 
