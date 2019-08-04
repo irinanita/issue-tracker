@@ -79,10 +79,15 @@ project, so having call to action elements will come in handy
 9.  Checkout
 10. Registered users can buy the app after they have tried the demo version
 11. Password recovery. Users can recover their password, they receive an email with a link. 
-Following the link they can insert a new password
+Following the link they can insert a new password (currently this works **only** in development mode, more details 
+[here](#Password-recovery-via-mail))
 12. Superusers/admins by accessing the admin panel:
     1. Can change ticket status from opened to closed
     2. Can change ticket label or type in case it's been wrongly assigned based on the description
+    
+> Note: App purchase and feature purchase have been separated as part of the business logic. Users can have more than
+one different features in the cart; however, the app purchase doesn't go to the same **cart** with features and is a 
+totally distinct purchase(separate flow).     
 
 ### Other Possible Features and Improvements
 1. Update password
@@ -95,6 +100,8 @@ users to answer directly to a specific comment
 7. Adding Markdown functionality to forms text areas in order to allow to format messages
 8. Provide discount code for user referrals 
 
+> Note: At the moment one user can purchase the app multiple times. It would be better to limit this to one purchase 
+in the future and assign some order transaction to the the user that may be used for further references.
 
 ## Technologies Used
 
@@ -231,8 +238,17 @@ weren't actually used in some pages due to the fact that the design didn't requi
 *avatar upload** also displayed the path to the current image and an option to delete
 it by ticking the checkbox (Django's default rendering of *image fields* in forms), but
 I think the layout wasn't intuitive and UX wasn't working well especially on small devices. 
-As a result it was decided to render it as a *file upload field*
+As a result it was decided to render it as a *file upload field*.
 
+### Testing CRUD from the admin area
+Tickets, Orders, Profiles and Comments are also rendered in the **admin interface**
+* For each functionality that involves updating these models admin area was also tested to check if the information is
+displayed correctly.
+
+> This checks helped me identify issues I was having in the checkout process related to app purchase. When the form
+was initially created, on valid form submission, it redirected to the thank you page. After implementing the view I 
+forgot to update the URL in the form in the template. Checking the **admin area** allowed me to detect this bug as 
+orders coming from app purchase weren't registered though the form validation didn't return any errors. 
 
 ### Password recovery via mail
 [Mailtrap](https://mailtrap.io/) was used in order to test the process of password recovery via email link.
@@ -249,6 +265,11 @@ well, only in this case no mail is actually sent to the address but to Mailtrap.
 > Note : Considering the facts mentioned above I decided to have keep [Mailtrap](https://mailtrap.io/) configured in
  productions as well. This allows to at least display the next step from the password recovery process that confirms
  that email was sent if the address was in the app's database.
+
+* Rendering the **upload avatar** in the Profile form as *file upload field* improved the
+overall UX. However, there still is an issue in the design for small devices : there is no separation, by colour or 
+border, between the left side **choose file** and the right that displays the **chosen file**, they are displayed as part
+of the same input field on a white background that can be a bit confusing, the functionality works perfectly as supposed to.
 
 
 ## Deployment
