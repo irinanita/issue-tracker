@@ -50,12 +50,14 @@ def checkout(request):
                 sweetify.error(request, 'Ooops', text = 'Your username or password is incorrect', persistent = 'Close')
 
             if customer.paid:
-                request.session['cart'] = {}
-                sweetify.success(request, 'Thank You!', text = 'You have successfully paid', )
-                user_vote = UserTicketVote(ticketID = ticket, user = request.user)
-                user_vote.save()
-                ticket.score += 1
-                ticket.save()
+                for id, quantity in cart.items():
+                    ticket = get_object_or_404(Ticket, pk = id)
+                    user_vote = UserTicketVote(ticketID = ticket, user = request.user)
+                    user_vote.save()
+                    ticket.score += 1
+                    ticket.save()
+                    request.session['cart'] = {}
+                    sweetify.success(request, 'Thank You!', text = 'You have successfully paid', )
                 return redirect("ticket_details", pk = ticket.id)
             else:
                 sweetify.error(request, 'Sorry', text = 'Unable to take payment', persistent = 'Close')
